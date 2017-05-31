@@ -1,0 +1,33 @@
+<html>
+<head>
+<style>
+</style>
+<title>Greenhouse</title><meta http-equiv="refresh" content="500">
+</head>
+
+<body style="background-color:#eff9e3;">
+
+<div align=center><h3>Greenhouse Temp/Humidity - Past 2 Weeks</h3></div>
+
+<table style="width:100%">
+  <tr>
+    <th><img src="/images/tmp.png" alt="Temperature" height="542" width="100%"></th>
+    <th><img src="/images/hum.png" alt="Humidity" height="542" width="100%"></th> 
+  </tr>
+</table>
+
+    <div style="text-align:center;">
+        <form action="/cgi-bin/search.py" method="get">
+            Start:  <input type="date" name="startdate" style="text-align:center;">
+            End:  <input type="date" name="enddate" style="text-align:center;">
+            <input type="submit" value="Search">
+        </form>
+<form action="index.html">
+    <input type="submit" value="Clear" />
+</form>
+    </div>
+
+
+</body>
+
+</html>

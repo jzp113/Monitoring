@@ -1,0 +1,7 @@
+CREATE TABLE events (
+   id INTEGER primary key,
+   Date datetime,
+   Temp int,
+   Fan int,
+   Water int
+);

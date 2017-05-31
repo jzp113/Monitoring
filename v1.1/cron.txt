@@ -1,0 +1,8 @@
+# m h  dom mon dow   command
+*/15 * * * * /usr/bin/python /var/www/html/cgi-bin/get.temp.sqlite.py >> /var/log/cron.get.temp.log 2>&1
+*/15 00-05 * * * /usr/bin/python /var/www/html/cgi-bin/fan.py >> /var/log/cron.fan.log 2>&1
+*/30 06    * * * /usr/bin/python /var/www/html/cgi-bin/soil.py >> /var/log/cron.soil.log 2>&1
+*/15 07-14 * * * /usr/bin/python /var/www/html/cgi-bin/fan.py >> /var/log/cron.fan.log 2>&1
+*/30 15    * * * /usr/bin/python /var/www/html/cgi-bin/soil.py >> /var/log/cron.soil.log 2>&1
+*/30 16-23 * * * /usr/bin/python /var/www/html/cgi-bin/fan.py >> /var/log/cron.fan.log 2>&1
+
