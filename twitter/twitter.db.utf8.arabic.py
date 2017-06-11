@@ -69,14 +69,14 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
-    #term1 = u"#ﷺ" 
-    #term2 = u"#Hadith"
-    #term3 = u"#دعاء"
-    #term4 = u"#الهلال"
-    #term5 = u"#Quran"
-    #term6 = u"#رمضان"
-    #term7 = u"#السعودية"
-    #term8 = u"#الرياض"
-    #term9 =u"#نشر_سيرته"
-    #term10 = u"#سكس"
+    term1 = u"#ﷺ" 
+    term2 = u"#Hadith"
+    term3 = u"#دعاء"
+    term4 = u"#الهلال"
+    term5 = u"#Quran"
+    term6 = u"#رمضان"
+    term7 = u"#السعودية"
+    term8 = u"#الرياض"
+    term9 =u"#نشر_سيرته"
+    term10 = u"#سكس"
     stream.filter(track=[term1,term2,term3,term4,term5,term6,term7,term8,term9,term10])
