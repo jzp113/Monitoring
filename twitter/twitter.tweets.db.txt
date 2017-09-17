@@ -1,0 +1,17 @@
+mysql> show columns in tweets;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| description | varchar(240) | YES  |     | NULL    |       |
+| name        | varchar(24)  | YES  |     | NULL    |       |
+| profurl     | varchar(36)  | YES  |     | NULL    |       |
+| followers   | bigint(20)   | YES  |     | NULL    |       |
+| friends     | bigint(20)   | YES  |     | NULL    |       |
+| source      | varchar(24)  | YES  |     | NULL    |       |
+| location    | varchar(48)  | YES  |     | NULL    |       |
+| screen_name | varchar(24)  | YES  |     | NULL    |       |
+| tweet_id    | bigint(20)   | YES  |     | NULL    |       |
+| tweet_at    | datetime     | YES  |     | NULL    |       |
+| born        | datetime     | YES  |     | NULL    |       |
+| text        | varchar(240) | YES  |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
