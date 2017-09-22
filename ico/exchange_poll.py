@@ -30,7 +30,7 @@ for exchange in api_list:
     known_coins = uniq_list
     print(len(known_coins))
 
-    # Get coins from bittrex to compare with known_coins
+    # Get coins to compare with known_coins
     #url = bittrex_url
     r = requests.get(exchange)
     json_obj = json.loads(r.text)
