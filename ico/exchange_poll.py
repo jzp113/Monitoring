@@ -35,8 +35,8 @@ for exchange in api_list:
 
     for i in (json_obj['result']):
         marketcurrency = (i['MarketCurrency'])
-        # Only making a list of coins trading in BTC or ETC
-        if (i['MarketCurrency']) in known_coins or ((i['BaseCurrency']) != 'BTC' or (i['BaseCurrency']) != 'ETH') :
+        # Only making a list of coins trading in BTC for now
+        if (i['MarketCurrency']) in known_coins or ((i['BaseCurrency']) != 'BTC') :
             pass
         else:
             print(marketcurrency + ' nope')
