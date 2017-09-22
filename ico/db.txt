@@ -1,0 +1,12 @@
+mysql> show columns in coins;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| id             | int(11)     | NO   | PRI | NULL    | auto_increment |
+| marketcurrency | varchar(6)  | YES  |     | NULL    |                |
+| basecurrency   | varchar(6)  | YES  |     | NULL    |                |
+| created        | datetime    | YES  |     | NULL    |                |
+| isactive       | varchar(5)  | YES  |     | NULL    |                |
+| exchange       | varchar(16) | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+
