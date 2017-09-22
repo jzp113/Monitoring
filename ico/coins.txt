@@ -1,12 +1,2 @@
-mysql> show columns in coins;
-+----------------+-------------+------+-----+---------+----------------+
-| Field          | Type        | Null | Key | Default | Extra          |
-+----------------+-------------+------+-----+---------+----------------+
-| id             | int(11)     | NO   | PRI | NULL    | auto_increment |
-| marketcurrency | varchar(6)  | YES  |     | NULL    |                |
-| basecurrency   | varchar(6)  | YES  |     | NULL    |                |
-| created        | datetime    | YES  |     | NULL    |                |
-| isactive       | varchar(5)  | YES  |     | NULL    |                |
-| exchange       | varchar(16) | YES  |     | NULL    |                |
-+----------------+-------------+------+-----+---------+----------------+
+CREATE TABLE  coins (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  marketcurrency VARCHAR(6), basecurrency VARCHAR(6), created datetime,  isactive VARCHAR(5),  exchange VARCHAR(16), discovered datetime);
 
