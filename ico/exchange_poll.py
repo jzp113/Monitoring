@@ -3,6 +3,7 @@ import pymysql
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 import json
+from urllib.parse import urlparse
 
 # Supported exchanges
 api_list =['https://bittrex.com/api/v1.1/public/getmarkets', 'https://c-cex.com/t/api_pub.html?a=getmarkets']
@@ -43,10 +44,10 @@ for exchange in api_list:
             basecurrency = (i['BaseCurrency'])
             created = (i['Created'])
             isactive = (i['IsActive'])
-            exchange = 'bittrex'
+            name = urlparse(exchange)
+            exch = (name.netloc.replace("-","_").split(".",1)[0])
             marketcurrency = (i['MarketCurrency']) 
             mysql_select = "insert into coins (marketcurrency, basecurrency, created, isactive, exchange) values(%s, %s, %s, %s, %s)"
-            cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], exchange))
-
+            cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], exch))
     db.commit()
 db.close()
