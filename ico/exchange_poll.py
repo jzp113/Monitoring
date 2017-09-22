@@ -4,50 +4,41 @@ import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 import json
 
-# Open database connection
-db = pymysql.connect("localhost","test","test","ico" )
-
-# prepare a cursor object using cursor() method
+#db
+db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
-
-# Prepare SQL query to INSERT a record into the database.
-sql = "SELECT * FROM coins"
-
-cursor.execute(sql)
-# Check which coin are in the db as known_coins
+select_sql = "SELECT marketcurrency FROM coins"
+cursor.execute(select_sql)
 results = cursor.fetchall()
+
+# Make list of coins in the db
 known_coins = []
 for row in results:
-    marketcurrency = row[0]
-    basecurrency = row[1]
-    created = row[2]
-    isactive = row[3]
-    exchange = row[4]
-    
-#Append coins to list known_coins
-    known_coins.append(marketcurrency)
-#print(known_coins)
+    coin = row[0] 
+    known_coins.append(coin)
+  
+#Remove dups trading in both ETH/BTC - can track separately later if nec
+uniq_list = set(known_coins)
+known_coins = uniq_list
 
-#Get coins from bittrex to compare with know_coins
+#Get coins from bittrex to compare with known_coins
 url = ('https://bittrex.com/api/v1.1/public/getmarkets')
 r = requests.get(url)
 json_obj = json.loads(r.text)
-#print(json_obj)
+
 for i in (json_obj['result']):
     marketcurrency = (i['MarketCurrency'])
-    if marketcurrency not in known_coins:
+    if (i['MarketCurrency']) in known_coins:
+        pass
+    else:
+        print(marketcurrency + ' nope')
         basecurrency = (i['BaseCurrency'])
         created = (i['Created'])
         isactive = (i['IsActive'])
         exchange = 'bittrex'
-        
-        #Insert record with new coins into ico.coins db
-        
-       #print('nope')
-        #print(marketcurrency)
-        #print(basecurrency)
-       # print(created)
-       # print(isactive)
-       # print(exchange)     
-# disconnect from server
+        marketcurrency = (i['MarketCurrency']) 
+        mysql_select = "insert into coins (marketcurrency, basecurrency, created, isactive, exchange) values(%s, %s, %s, %s, %s)"
+        cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], exchange))
+
+db.commit()
 db.close()
