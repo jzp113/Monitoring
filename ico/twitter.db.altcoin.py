@@ -17,11 +17,6 @@ import re
 conn = MySQLdb.connect("localhost","test","test","twitter",charset="utf8mb4",init_command='SET NAMES utf8mb4')
 c = conn.cursor()
 
-#Sky Biometry credentials
-sky_api_key = ""
-sky_api_secret = ""
-sky_face_detect_api_url = "http://api.skybiometry.com/fc/faces/detect.json?api_key=%s&api_secret=%s&urls=" % (sky_api_key, sky_api_secret)
-
 # authentication pieces
 consumer_key            = ""
 consumer_secret         = ""
