@@ -6,7 +6,7 @@ import json
 from urllib.parse import urlparse
 from datetime import datetime
 
-# Supported exchanges
+# Bittrex and CCEX - same API exchanges
 api_list =['https://bittrex.com/api/v1.1/public/getmarkets', 'https://c-cex.com/t/api_pub.html?a=getmarkets']
 
 # db
@@ -31,7 +31,6 @@ for exchange in api_list:
     print(len(known_coins))
 
     # Get coins to compare with known_coins
-    #url = bittrex_url
     r = requests.get(exchange)
     json_obj = json.loads(r.text)
 
@@ -45,11 +44,40 @@ for exchange in api_list:
             basecurrency = (i['BaseCurrency'])
             created = (i['Created'])
             isactive = (i['IsActive'])
+            name = (i['MarketCurrencyLong'])
             exname = urlparse(exchange)
             # Exchange column 
             exch = (exname.netloc.replace("-","_").split(".",1)[0])
             marketcurrency = (i['MarketCurrency']) 
-            mysql_select = "insert into coins (marketcurrency, basecurrency, created, isactive, exchange, discovered) values(%s, %s, %s, %s, %s, %s)"
-            cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], exch, datetime.utcnow()))
+            mysql_select = "insert into coins (marketcurrency, basecurrency, created, status, name, exchange, discovered) values(%s, %s, %s, %s, %s, %s, %s)"
+            cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], name, exch, datetime.utcnow()))
     db.commit()
+
+select_sql = "SELECT marketcurrency FROM coins"
+cursor.execute(select_sql)
+results = cursor.fetchall()
+
+
+# Get coins listed on Cryptopia
+# Make list of coins in the db
+known_coins = []
+for row in results:
+    coin = row[0] 
+    known_coins.append(coin)
+        
+# Get coins from cryptopia
+r = requests.get('https://www.cryptopia.co.nz/api/GetCurrencies')
+json_obj = json.loads(r.text)
+
+for item in json_obj['Data']:
+    marketcurrency = item['Symbol']
+    if (marketcurrency) in known_coins:
+        pass
+    else:
+        print("fholy shit")
+        name = (item['Name'])
+        status = (item['Status'])
+        mysql_select = "insert into coins (marketcurrency, basecurrency, created, status, name, exchange, discovered) values(%s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(mysql_select, (marketcurrency, 'na', '2014-01-01 00:00:00', status, name, 'cryptopia', datetime.utcnow()))
+    db.commit()        
 db.close()
