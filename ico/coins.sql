@@ -3,7 +3,7 @@ marketcurrency VARCHAR(6),
 basecurrency VARCHAR(6), 
 name VARCHAR(32), 
 created datetime,  
-isactive VARCHAR(5),  
+isactive VARCHAR(10),  
 exchange VARCHAR(16), 
 discovered datetime);
 
