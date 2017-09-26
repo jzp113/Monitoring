@@ -32,11 +32,10 @@ json_obj = json.loads(r.text)
 
 for i in (json_obj['result']):
     symbol = (i['MarketCurrency'])
-# Only making a list of coins trading in BTC for now
-    if (i['MarketCurrency']) in known_coins or ((i['BaseCurrency']) != 'BTC') :
+
+    if (i['MarketCurrency']) in known_coins:
         pass
     else:
-        print(symbol + ' nope')
         name = (i['MarketCurrencyLong'])
         # Exchange column 
         symbol = (i['MarketCurrency']) 

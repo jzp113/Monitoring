@@ -27,14 +27,11 @@ print(len(known_coins))
 # Get coins to compare with known_coins
 r = requests.get('https://www.binance.com/api/v1/ticker/allPrices')
 json_obj = json.loads(r.text)
-print(r.text)
 for i in (json_obj):
-    print(i['symbol'])
     symbol = (i['symbol'])
     if (i['symbol']) in known_coins:
         pass
     else:
-        print(symbol + ' nope')
         name = (symbol)
         mysql_select = "insert into coins (symbol, name, exchange, discovered) values(%s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'binance', datetime.utcnow()))
