@@ -6,11 +6,12 @@ import json
 from urllib.parse import urlparse
 from datetime import datetime
 
+
 # db
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
-select_sql = "SELECT marketcurrency FROM ccex"
+select_sql = "SELECT symbol FROM ico.coins where exchange like 'ccex'"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -30,19 +31,16 @@ r = requests.get('https://c-cex.com/t/api_pub.html?a=getmarkets')
 json_obj = json.loads(r.text)
 
 for i in (json_obj['result']):
-    marketcurrency = (i['MarketCurrency'])
+    symbol = (i['MarketCurrency'])
 # Only making a list of coins trading in BTC for now
     if (i['MarketCurrency']) in known_coins or ((i['BaseCurrency']) != 'BTC') :
         pass
     else:
-        print(marketcurrency + ' nope')
-        basecurrency = (i['BaseCurrency'])
-        created = (i['Created'])
-        isactive = (i['IsActive'])
+        print(symbol + ' nope')
         name = (i['MarketCurrencyLong'])
         # Exchange column 
-        marketcurrency = (i['MarketCurrency']) 
-        mysql_select = "insert into ccex (marketcurrency, basecurrency, created, status, name, exchange, discovered) values(%s, %s, %s, %s, %s, %s, %s)"
-        cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], name, 'ccex', datetime.utcnow()))
+        symbol = (i['MarketCurrency']) 
+        mysql_select = "insert into coins (symbol, name, exchange, discovered) values(%s, %s, %s, %s)"
+        cursor.execute(mysql_select, (i['MarketCurrency'], name, 'ccex', datetime.utcnow()))
     db.commit()        
 db.close()

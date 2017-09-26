@@ -6,11 +6,12 @@ import json
 from urllib.parse import urlparse
 from datetime import datetime
 
+
 # db
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
-select_sql = "SELECT marketcurrency FROM bittrex"
+select_sql = "SELECT symbol FROM ico.coins where exchange like 'bittrex'"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -30,19 +31,16 @@ r = requests.get('https://bittrex.com/api/v1.1/public/getmarkets')
 json_obj = json.loads(r.text)
 
 for i in (json_obj['result']):
-    marketcurrency = (i['MarketCurrency'])
+    symbol = (i['MarketCurrency'])
 # Only making a list of coins trading in BTC for now
-    if (i['MarketCurrency']) in known_coins or ((i['BaseCurrency']) != 'BTC') :
+    if (i['MarketCurrency']) in known_coins:
         pass
     else:
-        print(marketcurrency + ' nope')
-        basecurrency = (i['BaseCurrency'])
-        created = (i['Created'])
-        isactive = (i['IsActive'])
+        print(symbol + ' nope')
         name = (i['MarketCurrencyLong'])
         # Exchange column 
-        marketcurrency = (i['MarketCurrency']) 
-        mysql_select = "insert into bittrex (marketcurrency, basecurrency, created, status, name, exchange, discovered) values(%s, %s, %s, %s, %s, %s, %s)"
-        cursor.execute(mysql_select, (i['MarketCurrency'], i['BaseCurrency'], i['Created'], i['IsActive'], name, 'bittrex', datetime.utcnow()))
+        symbol = (i['MarketCurrency']) 
+        mysql_select = "insert into coins (symbol, name, exchange, discovered) values(%s, %s, %s, %s)"
+        cursor.execute(mysql_select, (i['MarketCurrency'], name, 'bittrex', datetime.utcnow()))
     db.commit()        
 db.close()

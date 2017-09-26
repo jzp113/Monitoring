@@ -5,13 +5,13 @@ requests.packages.urllib3.disable_warnings()
 import json
 from urllib.parse import urlparse
 from datetime import datetime
-
+import pprint
 
 # db
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
-select_sql = "SELECT symbol FROM ico.coins where exchange like 'cryptopia'"
+select_sql = "SELECT symbol FROM ico.coins where exchange like 'mercatox'"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -26,18 +26,17 @@ uniq_list = set(known_coins)
 known_coins = uniq_list
 print(len(known_coins))
         
-# Get coins from cryptopia
-r = requests.get('https://www.cryptopia.co.nz/api/GetCurrencies')
+# Get coins from mercatox
+r = requests.get('https://mercatox.com/public/json24full')
 json_obj = json.loads(r.text)
-
-for item in json_obj['Data']:
-    symbol = item['Symbol']
+#pprint.pprint(json_obj['pairs'])
+for item in (json_obj['pairs']):
+    symbol = item
     if (symbol) in known_coins:
         pass
     else:
-        name = (item['Name'])
-        status = (item['Status'])
+        name = symbol
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered) values(%s, %s, %s, %s)"
-        cursor.execute(mysql_select, (symbol, name, 'cryptopia', datetime.utcnow()))
+        cursor.execute(mysql_select, (symbol, name, 'mercatox', datetime.utcnow()))
     db.commit()        
 db.close()

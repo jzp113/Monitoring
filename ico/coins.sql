@@ -1,9 +1,10 @@
-CREATE TABLE *table* (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  
-marketcurrency VARCHAR(6), 
-basecurrency VARCHAR(6), 
-name VARCHAR(32), 
-created datetime,  
-status VARCHAR(24),  
+CREATE TABLE coins (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  
+symbol VARCHAR(56),  
+name VARCHAR(56),   
 exchange VARCHAR(16), 
+field1 varchar(512),
+field2 varchar(512),
+field3 varchar(512),
+field4 varchar(512),
+field5 varchar(512),
 discovered datetime);
-
