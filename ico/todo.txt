@@ -8,5 +8,5 @@ bitstamp?
 bisq p2p
 
 
-1. auto add them to twitter filter
+1. auto add to twitter filter
 2. current release date/previous exchange history/tweets/retweets/bots/followers
