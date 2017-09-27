@@ -5,6 +5,11 @@ https://bter.com/api2
 https://hitbtc.com/api
 http://doc.coinone.co.kr/
 https://www.chbtc.com/i/developer
+btcc
+kraken
+polo
+does stamp have alts?
+bisq, p2p oooh!
 
 get order books for new issues
 auto add them to twitter filter
