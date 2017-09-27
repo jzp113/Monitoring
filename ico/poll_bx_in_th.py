@@ -46,7 +46,6 @@ for pairing_id in uniq_ids:
     secondary = (json_obj[pairing_id]['secondary_currency'])
     pair = primary + "-" + secondary
     out = pairing_id + " " + pair
-    print(pair)
     symbol = secondary + "-" + primary
     if (symbol) in known_coins:
         pass
