@@ -1,7 +1,3 @@
-https://bx.in.th/api/
-https://liqui.io/api
-https://poloniex.com/support/api/
-https://bter.com/api2
 https://hitbtc.com/api
 http://doc.coinone.co.kr/
 https://www.chbtc.com/i/developer
