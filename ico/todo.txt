@@ -4,8 +4,9 @@ https://www.chbtc.com/i/developer
 btcc
 kraken
 polo
-does stamp have alts?
-bisq, p2p oooh!
+bitstamp?
+bisq p2p
 
-get order books for new issues
-auto add them to twitter filter
+
+1. auto add them to twitter filter
+2. current release date/previous exchange history/tweets/retweets/bots/followers
