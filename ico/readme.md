@@ -1,6 +1,6 @@
-It should be possible to put together working open-source credit ratings for ICO groups based on their previous projects as identified through social media and exchange activity.
+Open-source credit scores for rating ICO groups based on previous projects, social media and exchange activity.
 
-####Todo:
+**Todo**
 * https://hitbtc.com/api
 * http://doc.coinone.co.kr/
 * https://www.chbtc.com/i/developer
