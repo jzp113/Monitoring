@@ -1,5 +1,6 @@
 CREATE TABLE twitter.tweets (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  
-name VARCHAR(24),   
+name VARCHAR(24),  
+description varchar(128), 
 profurl VARCHAR(36), 
 followers bigint(20),
 friends bigint(20),
