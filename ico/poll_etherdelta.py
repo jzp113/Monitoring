@@ -30,7 +30,8 @@ r = requests.get('https://api.etherdelta.com/returnTicker')
 json_obj = json.loads(r.text)
 
 for item in json_obj:
-    symbol = item.split("_")[1]
+    #replace ETH_ instead of cut in case they add new base
+    symbol = item.replace('ETH_','')
     if (symbol) in known_coins:
         pass
     else:
