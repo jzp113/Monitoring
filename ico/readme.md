@@ -9,6 +9,8 @@ Open-source ICO credit scores/histories tracking social media and exchange activ
 * https://www.chbtc.com/i/developer
 * kraken / polo / bitstamp / bisq p2p
 * capture all-time high/low price/volume at each exchange for newly discovered coins - report
+* need comparable basic block explorer/transaction stats
+* link to rich list/total coins ever and total in circulation/rate of emission/etc.
 
 **Reporting
 * dates of known listings/delistings including related coins
