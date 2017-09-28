@@ -3,6 +3,7 @@ Open-source ICO credit scores/histories tracking social media and exchange activ
 **TODO**
 * auto add coin symbols to twitter filter on discovery
 * capture de-listings and track symbols/groups for correlation
+* https://api.bithumb.com/public/orderbook/ALL
 * https://hitbtc.com/api
 * http://doc.coinone.co.kr/
 * https://www.chbtc.com/i/developer
