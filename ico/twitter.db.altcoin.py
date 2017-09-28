@@ -24,7 +24,6 @@ access_token            = ""
 access_token_secret     = ""
 
 
-
 class StdOutListener(StreamListener):
 
     def on_data(self, data):
@@ -61,4 +60,4 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
-    stream.filter(track=['$GRWI ','$eli ','$hac ','$deep ','$hdlb '], async=True)
+    stream.filter(track=['trump','$eli ','$hac ','$deep ','$hdlb '], async=True)
