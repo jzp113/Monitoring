@@ -1,4 +1,4 @@
-Development of open-source credit scores rating ICO groups based on previous projects, social media and exchange activity.
+Open-source credit scores for rating ICO groups based on social media and exchange activity.
 
 **TODO**
 * https://hitbtc.com/api
