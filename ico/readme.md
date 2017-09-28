@@ -7,7 +7,6 @@ Open-source ICO credit scores/histories tracking social media and exchange activ
 * http://doc.coinone.co.kr/
 * https://www.chbtc.com/i/developer
 * kraken / polo / bitstamp / bisq p2p
-* capture de-listings and track symbols/groups for correlation
 * capture all-time high/low price/volume at each exchange for newly discovered coins - report
 
 **Reports
