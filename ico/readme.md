@@ -10,6 +10,9 @@ Open-source ICO credit scores/histories tracking social media and exchange activ
 * kraken / polo / bitstamp / bisq p2p
 * capture all-time high/low price/volume at each exchange for newly discovered coins - report
 
-**Reports
-* dates of known listings/delistings including related coins/tweeters & retweeters relationships/bot counts & analysis with metrics/followers and total influence score
+**Reporting
+* dates of known listings/delistings including related coins
+* tweeters & retweeters relationships
+* bot counts/analysis with metrics
+* followers and total influence score
 * reported elements should be browsable and clearly scored/live data as much as possible.
