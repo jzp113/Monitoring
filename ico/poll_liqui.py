@@ -35,7 +35,7 @@ for item in json_obj['pairs']:
         pass
     else:
         name = item
-        mysql_select = "insert into ico.coins (symbol, name, exchange, discovered) values(%s, %s, %s, %s)"
-        cursor.execute(mysql_select, (symbol, name, 'liqui', datetime.utcnow()))
+        mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
+        cursor.execute(mysql_select, (symbol, name, 'liqui', datetime.utcnow(), '1'))
     db.commit()        
 db.close()

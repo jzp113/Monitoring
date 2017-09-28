@@ -40,7 +40,7 @@ for i in (json_obj['result']):
         name = (i['MarketCurrencyLong'])
         # Exchange column 
         symbol = (i['MarketCurrency']) 
-        mysql_select = "insert into coins (symbol, name, exchange, discovered) values(%s, %s, %s, %s)"
-        cursor.execute(mysql_select, (i['MarketCurrency'], name, 'bittrex', datetime.utcnow()))
+        mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
+        cursor.execute(mysql_select, (i['MarketCurrency'], name, 'bittrex', datetime.utcnow(), '1'))
     db.commit()        
 db.close()
