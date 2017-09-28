@@ -30,7 +30,7 @@ r = requests.get('https://api.etherdelta.com/returnTicker')
 json_obj = json.loads(r.text)
 
 for item in json_obj:
-    symbol = item
+    symbol = item.split("_")[1]
     if (symbol) in known_coins:
         pass
     else:
