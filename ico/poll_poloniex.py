@@ -29,16 +29,17 @@ print(len(known_coins))
 # Get coins from poloniex
 r = requests.get('https://poloniex.com/public?command=returnTicker')
 json_obj = json.loads(r.text)
-
+add_list = ""
 for item in (json_obj):
     pair = item
     symbol = pair.replace("BTC_","").replace("ETH_","").replace("USDT_","").replace("XMR_","")
     print(symbol)
-    if (symbol) in known_coins:
+    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
        pass
     else:
         name = symbol
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'poloniex', datetime.utcnow(), '1'))
+        add_list += symbol
     db.commit()        
 db.close()

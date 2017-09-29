@@ -34,7 +34,7 @@ add_list = ""
 for item in (json_obj['pairs']):
     symbol = item.replace("_ETH","").replace("_BTC","").replace("_PM USD","").replace("_OK USD","").replace("_QIWI","").replace("_DOGE","").replace("_PR USD","").replace("_PR RUB","").replace("_PM EUR","").replace("_YA RUB","")
     name = item
-    if (symbol) in known_coins or symbol in add_list:
+    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
         pass
     else:
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"

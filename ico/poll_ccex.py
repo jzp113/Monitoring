@@ -34,7 +34,7 @@ for i in (json_obj['result']):
 
     symbol = (i['MarketCurrency'])
     name = (i['MarketCurrencyLong'])
-    if (symbol) in known_coins or symbol in add_list:
+    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
         pass
     else:
     # Exchange column 

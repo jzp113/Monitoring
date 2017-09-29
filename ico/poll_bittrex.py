@@ -29,18 +29,18 @@ print(len(known_coins))
 # Get coins to compare with known_coins
 r = requests.get('https://bittrex.com/api/v1.1/public/getmarkets')
 json_obj = json.loads(r.text)
-
+add_list = ""
 for i in (json_obj['result']):
     symbol = (i['MarketCurrency'])
 # Add if not in known_coins 
-    if (i['MarketCurrency']) in known_coins:
+    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
         pass
     else:
-        print(symbol + ' nope')
         name = (i['MarketCurrencyLong'])
         # Exchange column 
         symbol = (i['MarketCurrency']) 
         mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (i['MarketCurrency'], name, 'bittrex', datetime.utcnow(), '1'))
+        add_list += symbol
     db.commit()        
 db.close()

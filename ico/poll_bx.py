@@ -45,7 +45,7 @@ for pairing_id in uniq_ids:
     print(pairing_id)
     symbol = (json_obj[pairing_id]['secondary_currency'])
     name = symbol
-    if (symbol in known_coins or symbol in add_list):
+    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
         print(symbol)
         pass
     else:
