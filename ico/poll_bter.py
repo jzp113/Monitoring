@@ -29,16 +29,17 @@ print(len(known_coins))
 # Get coins from bter 
 r = requests.get('http://data.bter.com/api2/1/pairs')
 json_obj = json.loads(r.text)
-
+add_list = ""
 for item in (json_obj):
    #print(json_obj)
     symbol = item.replace("_btc","").replace("_cny","").replace("_eth","").replace("_ltc","")
     name = item
-    if (symbol) in known_coins:
+    if (symbol) in known_coins or symbol in add_list:
        pass
     else:
         name = symbol
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'bter', datetime.utcnow(), '1'))
+        add_list += symbol
     db.commit()        
 db.close()
