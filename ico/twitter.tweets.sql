@@ -10,4 +10,4 @@ screen_name varchar(512),
 tweet_id bigint(20),
 tweet_at datetime,
 born datetime,
-text varchar(240));
+text varchar(320));
