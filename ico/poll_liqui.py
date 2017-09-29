@@ -30,7 +30,7 @@ r = requests.get('https://api.liqui.io/api/3/info')
 json_obj = json.loads(r.text)
 print(json_obj['pairs'])
 for item in json_obj['pairs']:
-    symbol = item
+    symbol = item.replace("_eth","").replace("_btc","").replace("_usdt","")
     if (symbol) in known_coins:
         pass
     else:

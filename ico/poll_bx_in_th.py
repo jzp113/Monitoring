@@ -44,10 +44,10 @@ print(len(uniq_ids))
 for pairing_id in uniq_ids:
     primary = (json_obj[pairing_id]['primary_currency'])
     secondary = (json_obj[pairing_id]['secondary_currency'])
-    pair = primary + "-" + secondary
-    out = pairing_id + " " + pair
-    symbol = secondary + "-" + primary
+    symbol = primary
+    name = secondary
     if (symbol) in known_coins:
+        print(symbol)
         pass
     else:
         name = symbol

@@ -32,7 +32,8 @@ json_obj = json.loads(r.text)
 
 for item in (json_obj):
    #print(json_obj)
-    symbol = item
+    symbol = item.replace("_btc","").replace("_cny","").replace("_eth","").replace("_ltc","")
+    name = item
     if (symbol) in known_coins:
        pass
     else:

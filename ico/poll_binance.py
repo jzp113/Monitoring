@@ -28,7 +28,8 @@ print(len(known_coins))
 r = requests.get('https://www.binance.com/api/v1/ticker/allPrices')
 json_obj = json.loads(r.text)
 for i in (json_obj):
-    symbol = (i['symbol'])
+    symbol = (i['symbol']).replace("ETH","").replace("BTC","")
+    print(symbol)
     if (i['symbol']) in known_coins:
         pass
     else:

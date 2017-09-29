@@ -31,7 +31,9 @@ r = requests.get('https://poloniex.com/public?command=returnTicker')
 json_obj = json.loads(r.text)
 
 for item in (json_obj):
-    symbol = item
+    pair = item
+    symbol = pair.replace("BTC_","").replace("ETH_","").replace("USDT_","").replace("XMR_","")
+    print(symbol)
     if (symbol) in known_coins:
        pass
     else:
