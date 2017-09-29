@@ -28,7 +28,6 @@ print(len(known_coins))
 # Get coins to compare with known_coins
 r = requests.get('https://c-cex.com/t/api_pub.html?a=getmarkets')
 
-#print(r.text)
 json_obj = json.loads(r.text)
 add_list = ""
 for i in (json_obj['result']):
