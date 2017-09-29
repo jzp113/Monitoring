@@ -31,16 +31,15 @@ r = requests.get('https://c-cex.com/t/api_pub.html?a=getmarkets')
 json_obj = json.loads(r.text)
 add_list = ""
 for i in (json_obj['result']):
-    print(i['MarketCurrency'])
-    print(add_list)
+
     symbol = (i['MarketCurrency'])
     name = (i['MarketCurrencyLong'])
-    if (symbol) not in known_coins and symbol not in add_list:
+    if (symbol) in known_coins or symbol in add_list:
+        pass
+    else:
     # Exchange column 
         mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (i['MarketCurrency'], name, 'ccex', datetime.utcnow(), '1'))
         add_list = add_list + " " + (symbol)
-    else:
-        pass
     db.commit()        
 db.close()
