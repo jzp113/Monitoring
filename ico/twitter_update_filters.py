@@ -34,7 +34,7 @@ print(filter_list)
 command="supervisorctl stop twitter.db.altcoin.py"
 p = os.system('sudo %s' % (command))
 
-command="cp /home/josh/tw/twitter.db.altcoin.pristine.py /home/josh/tw/ico/twitter.db.altcoin.py"
+command="cp /home/josh/tw/twitter.db.altcoin.pristine.py /home/josh/tw/twitter.db.altcoin.py"
 p = os.system(command)
 
 with fileinput.FileInput('/home/josh/tw/twitter.db.altcoin.py', inplace=True, backup='.bak') as file:
