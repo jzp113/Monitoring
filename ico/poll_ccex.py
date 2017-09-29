@@ -32,13 +32,12 @@ json_obj = json.loads(r.text)
 
 for i in (json_obj['result']):
     symbol = (i['MarketCurrency'])
-
-    if (i['MarketCurrency']) in known_coins:
+    print(symbol)
+    if (symbol) in known_coins:
         pass
     else:
-        name = (i['MarketCurrencyLong'])
+        name = (symbol)
         # Exchange column 
-        symbol = (i['MarketCurrency']) 
         mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (i['MarketCurrency'], name, 'ccex', datetime.utcnow(), '1'))
     db.commit()        

@@ -9,7 +9,7 @@ import fileinput
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
-select_sql = "SELECT symbol FROM ico.coins where new like '1'"
+select_sql = "SELECT symbol FROM ico.coins where new like '1';"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -25,9 +25,12 @@ known_coins = uniq_list
 print(uniq_list)
 print(len(uniq_list))
 
-coin_list = "','".join(known_coins)
+if uniq_list == 0:
+    pass
+# Format for twitter stream track parameter as an array.
+coin_list = " ','$".join(uniq_list)
 print(coin_list)
-filter_list = "'" + coin_list + "'"
+filter_list = "'$" + coin_list + " '"
 print(filter_list)
 
 # Stop, update and restart the Twitter stream
@@ -41,5 +44,5 @@ with fileinput.FileInput('/home/josh/tw/twitter.db.altcoin.py', inplace=True, ba
     for line in file:
         print(line.replace('listofsymbolshere', filter_list), end='')
 
-command="supervisorctl start /home/josh/tw/twitter.db.altcoin.py"
+command="supervisorctl start twitter.db.altcoin.py"
 p = os.system('sudo %s' % (command))
