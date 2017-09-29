@@ -23,22 +23,24 @@ for row in results:
   
 # Remove duplicates
 uniq_list = set(known_coins)
-known_coins = uniq_list
 print(len(known_coins))
 
 # Get coins to compare with known_coins
 r = requests.get('https://c-cex.com/t/api_pub.html?a=getmarkets')
 json_obj = json.loads(r.text)
-
+#print(r.text)
+c = 0
 for i in (json_obj['result']):
+    c = c + 1
+    print(c)
+    print(i['MarketCurrency'])
     symbol = (i['MarketCurrency'])
-    print(symbol)
-    if (symbol) in known_coins:
-        pass
-    else:
-        name = (symbol)
-        # Exchange column 
+    name = (i['MarketCurrencyLong'])
+    if (symbol) not in known_coins:
+    # Exchange column 
         mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (i['MarketCurrency'], name, 'ccex', datetime.utcnow(), '1'))
+    else:
+        pass
     db.commit()        
 db.close()
