@@ -28,14 +28,16 @@ print(len(known_coins))
 # Get coins from liqui
 r = requests.get('https://api.liqui.io/api/3/info')
 json_obj = json.loads(r.text)
+add_list = ""
 print(json_obj['pairs'])
 for item in json_obj['pairs']:
     symbol = item.replace("_eth","").replace("_btc","").replace("_usdt","")
-    if (symbol) in known_coins:
+    if (symbol) in known_coins or symbol in add_list:
         pass
     else:
         name = item
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'liqui', datetime.utcnow(), '1'))
+        add_list += symbol
     db.commit()        
 db.close()
