@@ -32,7 +32,7 @@ json_obj = json.loads(r.text)
 
 for i in (json_obj['result']):
     symbol = (i['MarketCurrency'])
-# Only making a list of coins trading in BTC for now
+# Add if not in known_coins 
     if (i['MarketCurrency']) in known_coins:
         pass
     else:

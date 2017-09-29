@@ -26,7 +26,7 @@ uniq_list = set(known_coins)
 known_coins = uniq_list
 print(len(known_coins))
         
-# Get coins from poloniex
+# Get coins from bter 
 r = requests.get('http://data.bter.com/api2/1/pairs')
 json_obj = json.loads(r.text)
 

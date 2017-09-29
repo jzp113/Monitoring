@@ -1,7 +1,7 @@
 CREATE TABLE coins (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 symbol VARCHAR(56),
 name VARCHAR(56),
-exchange VARCHAR(16),
+exchange VARCHAR(32),
 field1 varchar(512),
 field2 varchar(512),
 field3 varchar(512),
