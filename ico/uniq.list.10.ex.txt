@@ -110,7 +110,6 @@ bsdb
 bsty
 bta
 btb
-btc
 btcd
 btchc
 btcs
@@ -261,7 +260,6 @@ ery
 etb
 etc
 eth
-eth_ltc
 etp
 ett
 etx
@@ -423,7 +421,6 @@ lnk
 log
 look
 lot
-lower(symbol)
 loyal
 lrc
 lsk
