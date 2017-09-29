@@ -40,6 +40,6 @@ for item in (json_obj):
         name = symbol
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'bter', datetime.utcnow(), '1'))
-        add_list += symbol
+        add_list =  add_list + symbol
     db.commit()        
 db.close()
