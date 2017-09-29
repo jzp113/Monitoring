@@ -29,14 +29,16 @@ print(len(known_coins))
 # Get coins from mercatox
 r = requests.get('https://mercatox.com/public/json24full')
 json_obj = json.loads(r.text)
+add_list = ""
 #pprint.pprint(json_obj['pairs'])
 for item in (json_obj['pairs']):
     symbol = item.replace("_ETH","").replace("_BTC","").replace("_PM USD","").replace("_OK USD","").replace("_QIWI","").replace("_DOGE","").replace("_PR USD","").replace("_PR RUB","").replace("_PM EUR","").replace("_YA RUB","")
     name = item
-    if (symbol) in known_coins:
+    if (symbol) in known_coins or symbol in add_list:
         pass
     else:
         mysql_select = "insert into ico.coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'mercatox', datetime.utcnow(), '1'))
+        add_list += symbol
     db.commit()        
 db.close()
