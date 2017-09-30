@@ -31,7 +31,7 @@ json_obj = json.loads(r.text)
 print(json_obj)
 for item in json_obj['Data']:
     symbol = item['Symbol']
-    if (symbol) in known_coins:
+    if (symbol) in known_coins or (symbol == 'BTC' or symbol == 'ETH'):
         pass
     else:
         name = (item['Name'])
