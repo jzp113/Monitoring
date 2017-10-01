@@ -7,9 +7,9 @@ import fileinput
 
 # db
 db = pymysql.connect("localhost","test","test","ico")
-cursor = db.cursor()
+cursor = db.cursor()	
 
-select_sql = "SELECT lower(symbol) FROM ico.coins;"
+select_sql = "SELECT lower(symbol) FROM ico.coins where (symbol  not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and symbol not like 'eth');"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -21,7 +21,7 @@ for row in results:
 
 # Remove duplicates
 uniq_list = set(known_coins)
-known_coins = uniq_list
+known_coins = (uniq_list)
 print(len(uniq_list))
 
 my_list = list(uniq_list)
