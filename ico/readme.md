@@ -18,8 +18,6 @@ Currently tracking 900+ coins across 10 exchanges with approx 20 new listings da
 * display rich lists & potential slippage/total coins/total in circulation/rate of emission/brief hash rate comparisons where avail.
 
 **Add:
-* https://api.bithumb.com/public/orderbook/ALL
-* https://hitbtc.com/api
 * http://doc.coinone.co.kr/
 * https://www.chbtc.com/i/developer
 * kraken / polo / bitstamp / bisq p2p
