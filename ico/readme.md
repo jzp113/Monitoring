@@ -10,9 +10,9 @@ Currently tracking 1000+ coins across 14 exchanges with 10-20 listings added dai
 
 **Twitter**
 * top 10 active pump group/ico twitter trends/crossovers graphed.
-* tweeters vs retweeters vs bots graphed
+* tweeters vs retweeters vs bots social graphs
 * follower count and total influence score
-* confidence score based on matching graphs
+* confidence score based on matches 
 
 **Explorer/Exchange**
 * compare related listing/delistings
