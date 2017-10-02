@@ -37,13 +37,14 @@ class StdOutListener(StreamListener):
             friends = json.loads(data)['user']['friends_count']
             source = json.loads(data)['source'].split(">")[-2].replace("</a","")
             location = json.loads(data)['user']['location']
+            lang = json.loads(data)['lang']
             tweet_id = json.loads(data)['id']
             tweet_date = json.loads(data)['created_at']
             user_created = json.loads(data)['user']['created_at']
             tweet_at = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(tweet_date,'%a %b %d %H:%M:%S +0000 %Y'))
             born = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(user_created,'%a %b %d %H:%M:%S +0000 %Y'))
             text = text.lower()  
-            c.execute("INSERT INTO tweets (born,tweet_at,tweet_id,screen_name,name,text,description,profurl,followers,friends,source,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(born,tweet_at,tweet_id,screen_name,name,text,description,profurl,followers,friends,source,location))
+            c.execute("INSERT INTO tweets (born,tweet_at,tweet_id,screen_name,name,text,description,profurl,followers,friends,source,location,lang) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(born,tweet_at,tweet_id,screen_name,name,text,description,profurl,followers,friends,source,location,lang))
             conn.commit()
             return True
         except:
