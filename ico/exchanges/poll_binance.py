@@ -32,10 +32,8 @@ for i in (json_obj):
     symbol = (i['symbol']).replace("ETH","").replace("BTC","")
     print(symbol)
     if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
-        print("nope")
         pass
     else:
-        print("gonna add")
         name = (symbol)
         mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
         cursor.execute(mysql_select, (symbol, name, 'binance', datetime.utcnow(), '1'))
