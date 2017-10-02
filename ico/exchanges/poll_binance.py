@@ -29,9 +29,9 @@ r = requests.get('https://www.binance.com/api/v1/ticker/allPrices')
 json_obj = json.loads(r.text)
 add_list = ""
 for i in (json_obj):
-    symbol = (i['symbol']).replace("ETH","").replace("BTC","")
+    symbol = i
     print(symbol)
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
+    if (symbol in known_coins or symbol in add_list):
         pass
     else:
         name = (symbol)

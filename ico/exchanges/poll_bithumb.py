@@ -33,7 +33,7 @@ for i in (json_obj)['data']:
     #print(i)
     symbol = i
     print(symbol)
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH' or symbol == 'payment_currency' or symbol == 'timestamp'):
+    if (symbol in known_coins or symbol in add_list) or (symbol == 'payment_currency' or symbol == 'timestamp'):
         pass
     else:
         name = (symbol)

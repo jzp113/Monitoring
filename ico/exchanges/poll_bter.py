@@ -34,7 +34,7 @@ for item in (json_obj):
    #print(json_obj)
     symbol = item.replace("_btc","").replace("_cny","").replace("_eth","").replace("_ltc","")
     name = item
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'btc' or symbol == 'eth'):
+    if (symbol in known_coins or symbol in add_list):
        pass
     else:
         name = symbol

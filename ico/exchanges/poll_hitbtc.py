@@ -32,7 +32,7 @@ add_list = ""
 for i in (json_obj)['symbols']:
     symbol = (i['commodity'])
     print(symbol)
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
+    if (symbol in known_coins or symbol in add_list):
         pass
     else:
         name = (symbol)

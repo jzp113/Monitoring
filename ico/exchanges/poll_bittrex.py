@@ -33,7 +33,7 @@ add_list = ""
 for i in (json_obj['result']):
     symbol = (i['MarketCurrency'])
 # Add if not in known_coins 
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
+    if (symbol in known_coins or symbol in add_list):
         pass
     else:
         name = (i['MarketCurrencyLong'])

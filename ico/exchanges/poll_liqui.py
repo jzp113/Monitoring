@@ -32,7 +32,7 @@ add_list = ""
 print(json_obj['pairs'])
 for item in json_obj['pairs']:
     symbol = item.replace("_eth","").replace("_btc","").replace("_usdt","")
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'BTC' or symbol == 'ETH'):
+    if (symbol in known_coins or symbol in add_list):
         pass
     else:
         name = item
