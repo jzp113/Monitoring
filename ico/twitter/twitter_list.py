@@ -16,7 +16,7 @@ results = cursor.fetchall()
 # Make list of coins in the db
 known_coins = []
 for row in results:
-    coin = "$" + row[0] 
+    coin = "$" + row[0] + " "
     known_coins.append(coin)
 
 # Remove duplicates
