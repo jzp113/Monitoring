@@ -34,7 +34,7 @@ filter_list = "'$" + coin_list + " '"
 print(filter_list)
 
 # Stop, update and restart the Twitter stream
-command="supervisorctl stop twitter.db.altcoin.py"
+command="supervisorctl stop twitter.db.altcoin1.py"
 p = os.system('sudo %s' % (command))
 
 command="cp /home/josh/tw/twitter.db.altcoin.pristine.py /home/josh/tw/twitter.db.altcoin.py"

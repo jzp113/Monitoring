@@ -9,7 +9,10 @@ import fileinput
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()	
 
-select_sql = "SELECT lower(symbol) FROM ico.coins where (symbol  not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and symbol not like 'eth');"
+# only new - no btc/eth/$$$$ - don't want them in the filters
+select_sql = """SELECT lower(symbol) FROM ico.coins where (
+symbol not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and 
+symbol not like 'eth' and new = 1);"""
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -24,8 +27,6 @@ uniq_list = set(known_coins)
 known_coins = (uniq_list)
 print(len(uniq_list))
 
-my_list = list(uniq_list)
-#print(my_list)
-print(my_list[0:400])
-print(my_list[400:800])
-print(my_list[800:1200])
+add_list = list(uniq_list)
+
+print(add_list[0:400])
