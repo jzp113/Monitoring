@@ -10,7 +10,7 @@ from datetime import datetime
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
-select_sql = "SELECT symbol FROM ico.coins where exchange like 'coinone'"
+select_sql = "SELECT symbol FROM ico.coins where exchange like 'kraken'"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
@@ -25,20 +25,19 @@ known_coins = uniq_list
 print(len(known_coins))
 
 # Get coins to compare with known_coins
-r = requests.get('https://api.coinone.co.kr/ticker/?currency=all')
+r = requests.get('https://api.kraken.com/0/public/AssetPairs')
 json_obj = json.loads(r.text)
-print(json_obj)
+#print(r.text)
 add_list = ""
-for i in (json_obj):
-    print(i)
+for i in (json_obj)['result']:
     symbol = i
     #print(symbol)
-    if (symbol in known_coins or symbol in add_list) or (symbol == 'errorCode' or symbol == 'timestamp'):
+    if (symbol in known_coins or symbol in add_list):
         pass
     else:
         name = (symbol)
         mysql_select = "insert into coins (symbol, name, exchange, discovered, new) values(%s, %s, %s, %s, %s)"
-        cursor.execute(mysql_select, (symbol, name, 'coinone', datetime.utcnow(), '1'))
+        cursor.execute(mysql_select, (symbol, name, 'kraken', datetime.utcnow(), '1'))
         add_list =  add_list + symbol
     db.commit()        
 db.close()
