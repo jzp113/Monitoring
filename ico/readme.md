@@ -3,17 +3,11 @@ Automated ICO tracking system for generating credit scores based on social media
 **TODO**
 
 * auto add new symbols to twitter filter on discovery
-* team structures incl chronological/followers
-* efficient strategy for obtaining relevant histories. basically grab each top guy, dump/count all the symbols then lookups=score.
-* method/schema/etl for modelling, might have to be after histories are obtained. 
-* capture market info snapshot on discovery, for future analysis not critical.
-* need some kind of activity status check/alert for all new adds.
-
-**Twitter**
-* top 10 *new* active pump group/ico twitter trends/crossovers charts. 
-* tweeters vs retweeters vs bots social graphs
-* follower count and total influence score
-* confidence score based on matches 
+* graph twitter team structures incl chronological for lead/members/bots/total followers/influence
+* efficient strategy for obtaining team histories. basically grab top accounts, dump/count and cross-reference. 
+* method/schema/etl for modelling, should be after histories are indexed. 
+* capture snapshot of market info on discovery, for future not critical.
+* need some kind of activity status check/alert for all new adds, which ones haven't gone active yet.
 
 **Reporting**
 **Explorer/Exchange**
@@ -23,6 +17,7 @@ Automated ICO tracking system for generating credit scores based on social media
 * brief hash rate comparisons with known coins numeric ie: 0.000000000001% of btc or ibm or whatever. has to have visual impact.
 * inline lookup mapping current group to related icos.
 * reported elements should be browsable and clearly scored/live data as much as possible.
+* top 10 *new* active pump group/ico twitter trends/crossovers charts.
 
 **Add**
 
