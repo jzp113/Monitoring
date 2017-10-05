@@ -10,7 +10,6 @@ Automated ICO tracking system for generating credit scores based on social media
 * need some kind of activity status check/alert for all new adds, which ones haven't gone active yet.
 
 **Reporting**
-**Explorer/Exchange**
 * compare related listing/delistings
 * display risk = rich lists w calc potential slippage
 * total coins vs total in circulation and rate of emission = inflation/pre-mine/hidden mine/cost to maintain current value
@@ -20,7 +19,6 @@ Automated ICO tracking system for generating credit scores based on social media
 * top 10 *new* active pump group/ico twitter trends/crossovers charts.
 
 **Add**
-
 http://www.fsa.go.jp/menkyo/menkyoj/kasoutuka.pdf
 Money Partners
 QUOINE
