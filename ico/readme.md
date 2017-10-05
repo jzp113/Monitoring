@@ -7,7 +7,7 @@ Automated ICO tracking system for generating credit scores based on social media
 * efficient strategy for obtaining relevant histories. basically grab each top guy, dump/count all the symbols then lookups=score.
 * method/schema/etl for modelling, might have to be after histories are obtained. 
 * capture market info snapshot on discovery, for future analysis not critical.
-* check/alert for inactive symbols
+* need some kind of activity status check/alert for all new adds.
 
 **Twitter**
 * top 10 *new* active pump group/ico twitter trends/crossovers charts. 
