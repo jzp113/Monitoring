@@ -17,6 +17,8 @@ Automated ICO tracking system for generating credit scores based on social media
 * inline lookup mapping current group to related icos.
 * reported elements should be browsable and clearly scored/live data as much as possible.
 * top 10 *new* active pump group/ico twitter trends/crossovers charts.
+* time of day/day of week trends per ico, follow the sun/national/timezone etc
+
 
 **Add**
 http://www.fsa.go.jp/menkyo/menkyoj/kasoutuka.pdf
