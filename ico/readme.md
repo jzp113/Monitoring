@@ -1,3 +1,5 @@
+Automated ICO tracking system for generating credit scores based on social media and exchange acitivity.
+
 **TODO**
 
 * auto add new symbols to twitter filter on discovery
