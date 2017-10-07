@@ -17,8 +17,8 @@ import re
 conn = MySQLdb.connect("localhost","test","test","twitter",charset="utf8mb4",init_command='SET NAMES utf8mb4')
 c = conn.cursor()
 
-# Authentication pieces
-consumer_key            = ""
+# Auth
+consumer_key            =  ""
 consumer_secret         = ""
 access_token            = ""
 access_token_secret     = ""
@@ -38,12 +38,16 @@ class StdOutListener(StreamListener):
             source = json.loads(data)['source'].split(">")[-2].replace("</a","")
             location = json.loads(data)['user']['location']
             tweet_id = json.loads(data)['id']
+            user_id = json.loads(data)['user']['id']
             tweet_date = json.loads(data)['created_at']
             user_created = json.loads(data)['user']['created_at']
+            time_zone = json.loads(data)['user']['time_zone']
+            utc_offset = json.loads(data)['user']['utc_offset']
             tweet_at = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(tweet_date,'%a %b %d %H:%M:%S +0000 %Y'))
             born = time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(user_created,'%a %b %d %H:%M:%S +0000 %Y'))
             text = text.lower()  
-            c.execute("INSERT INTO tweets (born,tweet_at,tweet_id,screen_name,name,text,description,profurl,followers,friends,source,location) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(born,tweet_at,tweet_id,screen_name,name,text,description,profurl,followers,friends,source,location))
+            print(text)
+            c.execute("INSERT INTO tweets (born,tweet_at,tweet_id,user_id,screen_name,name,text,description,profurl,followers,friends,source,location,time_zone,utc_offset) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(born,tweet_at,tweet_id,user_id,screen_name,name,text,description,profurl,followers,friends,source,location,time_zone,utc_offset))
             conn.commit()
             return True
         except:
@@ -59,5 +63,4 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
-    stream.filter(track=['$bmchain token ', '$sht ', '$hmq ', '$piex ', '$0x81be91c7e74ad0957b4156f782263e7b0b88cf7b ', '$bis ', '$sggcoin ', '$0x32c785e4e8477b277fea2ca2301727084d79d933 ', '$dtc ', '$mkr ', '$rpl ', '$goku ', '$hsr ', '$san ', '$pow ', '$frd ', '$cnx ', '$swp ', '$odn ', '$zec ', '$whl ', '$0xe2f45f1660dc99daf3bd06f637ab1e4debc15bde ', '$mgo ', '$dcnt ', '$0x6fff3806bbac52a20e0d79bc538d527f6a22c96b ', '$cld ', '$ldm ', '$hpc ', '$ind ', '$lun ', '$adt ', '$hkg ', '$rep ', '$bop ', '$tft ', '$alis ', '$lottereum ', '$dgd ', '$gno ', '$edoge ', '$btn ', '$orme ', '$pt ', '$nxx ', '$0x4bf215086c05c0384bdf3731bdb2b37799e9bb5b ', '$r token ', '$rup ', '$vsmold ', '$proxy token ', '$xai ', '$umc ', '$0x93182d5f3a05bf5eb6b9f6c0e003a46dff9128ff ', '$rare ', '$salt ', '$bananacoin extended ', '$32c7 ', '$0x865d176351f287fe1b0010805b110d08699c200a ', '$evr ', '$silent notary token ', '$0x2df8286c9396f52e17dfee75d2e41e52609cf897 ', '$fuckold ', '$ndc ', '$kick ', '$bmt ', '$pts ', '$1life ', '$tgt ', '$ntc ', '$inxt ', '$0x2167bcd8bc794f2c7039c3516cd5d37aac8de7c6 ', '$natcoin ', '$dgb ', '$trx ', '$r ', '$exn ', '$network ', '$jet ', '$gcc24 ', '$oax ', '$bco ', '$nmr ', '$f2utoken ', '$e4row ', '$net ', '$ebtc ', '$nxc ', '$bnt ', '$quiztum ']
-, async=True)
+    stream.filter(track=['$gd2 ', '$ntc '], async=True)

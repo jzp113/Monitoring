@@ -11,6 +11,7 @@ time_zone varchar(48),
 utc_offset varchar(24),
 tweet_id bigint(20),
 tweet_at datetime,
+user_id bigint(20),
 born datetime,
 lang varchar(8),
 text varchar(320));
