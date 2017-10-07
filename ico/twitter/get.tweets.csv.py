@@ -47,12 +47,12 @@ def get_all_tweets(screen_name):
 		print("...%s tweets downloaded so far" % (len(alltweets)))
 	
 
-	outtweets = [[tweet.id, tweet.created_at,tweet.user.screen_name, tweet.user.created_at, tweet.entities, tweet.favorite_count, tweet.favorited, tweet.user.statuses_count, tweet.user.time_zone, tweet.user.utc_offset, tweet.user.id, tweet.in_reply_to_screen_name, tweet.in_reply_to_status_id, tweet.in_reply_to_user_id, tweet.retweet_count, tweet.retweet_count, tweet.text.encode("utf-8")] for tweet in alltweets]
+	outtweets = [[tweet.id, tweet.created_at,tweet.user.screen_name, tweet.user.created_at, tweet.entities, tweet.favorite_count, tweet.favorited, tweet.user.statuses_count, tweet.user.time_zone, tweet.user.utc_offset, tweet.user.id, tweet.in_reply_to_screen_name, tweet.in_reply_to_status_id, tweet.in_reply_to_user_id, tweet.retweet_count, tweet.text.encode("utf-8")] for tweet in alltweets]
 	
 	#write the csv	
 	with open('%s_tweets.csv' % screen_name, 'w') as f:
 		writer = csv.writer(f)
-		writer.writerow(["id_str", "created_at", "user.screen_name", "user.created_at", "entities", "favorite_count", "favorited", "user.statuses_count", "user.time_zone", "user.utc_offset", "user.id", "in_reply_to_screen_name", "in_reply_to_status_id", "in_reply_to_user_id", "retweet_count", "retweet_count", "text"])
+		writer.writerow(["id_str", "created_at", "user.screen_name", "user.created_at", "entities", "favorite_count", "favorited", "user.statuses_count", "user.time_zone", "user.utc_offset", "user.id", "in_reply_to_screen_name", "in_reply_to_status_id", "in_reply_to_user_id", "retweet_count", "text"])
 		writer.writerows(outtweets)
 	
 	pass
