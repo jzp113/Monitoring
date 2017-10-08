@@ -6,13 +6,13 @@ import os
 import fileinput
 
 # db
-db = pymysql.connect("localhost","test","test","ico")
+db = pymysql.connect("localhost","test","test","twitter")
 cursor = db.cursor()	
 
 # only new - no btc/eth/$$$$ - don't want them in the filters
 select_sql = """SELECT lower(symbol) FROM ico.coins where (
 symbol not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and 
-symbol not like 'eth' and symbol not like '0x%' and new = 1);"""
+symbol not like 'eth' and new = 1);"""
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
