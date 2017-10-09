@@ -28,7 +28,7 @@ cursor = db.cursor()
 pysql = lambda q: pdsql.sqldf(q, globals())
 
 # get top retweeted ico's in past 24 hours
-select_sql = "select substring_index(substring_index(text, ':', 1), ':', 1) from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour));"
+select_sql = "select substring_index(substring_index(text, ':', 1), ':', 1) from twitter.tweets where text not like '%stocks%' and text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour));"
 cursor.execute(select_sql)
 results = cursor.fetchall()
 counts = defaultdict(int)

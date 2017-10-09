@@ -27,7 +27,7 @@ uniq_list = set(known_coins)
 known_coins = (uniq_list)
 print(len(uniq_list))
 
-select_sql = "select distinct count(*) as cnt, text from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour)) group by text order by cnt desc limit 10;"
+select_sql = "select distinct count(*) as cnt, substring_index(substring_index(text, ':', 1), ':', 1) from twitter.tweets where(text not like '%observadbinario%' and text not like '%stocks%' and text not like '%tradosaure%') and text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour)) group by text order by cnt desc limit 10;"
 cursor.execute(select_sql)
 tweets = cursor.fetchall()
 for item in tweets:
