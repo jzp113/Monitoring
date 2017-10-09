@@ -2,13 +2,12 @@ CREATE DATABASE twitter
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
 
-
 CREATE TABLE twitter.tweets (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,  
 screen_name varchar(24),
 tweet_at datetime,
 born datetime,
 urls varchar(1024),
-symbols varchar(256),
+symbols varchar(1024),
 description varchar(320),
 username varchar(32),
 text varchar(320),
@@ -17,7 +16,7 @@ favorited bool,
 followers bigint(20),
 friends bigint(20),
 source varchar(48),
-location varchar(48),
+location varchar(128),
 tweet_id bigint(20),
 statuses_count bigint(20),
 time_zone varchar(48),
