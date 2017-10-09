@@ -46,10 +46,11 @@ class StdOutListener(StreamListener):
         time_zone = json.loads(data)['user']['time_zone']
         utc_offset = json.loads(data)['user']['utc_offset']
         user_id = json.loads(data)['user']['id']
+        verified = json.loads(data)['user']['verified']
         in_reply_to_screen_name = json.loads(data)['in_reply_to_screen_name']
         in_reply_to_status_id = json.loads(data)['in_reply_to_status_id']
         in_reply_to_user_id = json.loads(data)['in_reply_to_user_id']
-        c.execute("INSERT INTO tweets (screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",([screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id]))
+        c.execute("INSERT INTO tweets (screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, verified, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",([screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, verified, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id]))
         conn.commit()        
 
     def on_error(self, status):
