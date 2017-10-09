@@ -3,10 +3,8 @@ Automated ICO tracking system for generating credit scores based on social media
 **TODO**
 
 * auto add new symbols to twitter filter on discovery
-* graph twitter team structures incl chrono /lead/members/bots/total followers/influence/individual&team weightings.   
+* simple colorful pie chart for each ico displaying associated groups by percentage. each segment should also highlight % down from all time highs and be clickable for a individual scores/breakdowns/weightings as well as raw text samples w count to highlight spam, no names or timestamps/etc.
 * efficient strategy for obtaining team histories. basically grab top accounts, dump/count and cross-reference. 
-* method/schema/etl for modelling, should be after histories are indexed. 
-* capture snapshot of market info on discovery, for future not critical.
 * need some kind of activity status check/alert for all new adds, which ones haven't gone active yet.
 
 **Reporting**
