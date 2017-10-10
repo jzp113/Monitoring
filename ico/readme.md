@@ -3,13 +3,15 @@ Automated ICO tracking system for generating credit scores based on social media
 **TODO**
 
 * auto add new symbols to twitter filter on discovery.
-* auto identify/delete stock tickers/accounts based on brief history.
-* goal is a simple colorful pie chart for each ico displaying associated groups by percentage. each segment should visually highlight % down from all time highs or last n months.
-* pie chart segments should be clickable for a individual scores/breakdowns/weightings as well as raw text samples w count to highlight spam, no names or timestamps/etc.
-* efficient strategy for obtaining team histories. basically grab top accounts, dump/count and cross-reference. 
+* auto remove stock tickers/accounts and basically anyone reputable based on brief history.
+* efficient strategy for building team histories. has to be repeatable/automateable and open for review.
 * need some kind of activity status check/alert for all new adds, which ones haven't gone active yet.
 
 **Reporting**
+
+* goal is a simple colorful pie chart for each ico displaying associated groups by percentage. each segment should visually highlight % down from all time highs or last n months.
+* pie chart segments should be clickable for a individual scores/breakdowns/weightings as well as raw text samples w count to highlight spam, no names or timestamps/etc.
+* account age distribution as simply as poss. 
 * compare related listing/delistings
 * display risk = rich lists w calc potential slippage
 * total coins vs total in circulation and rate of emission = inflation/pre-mine/hidden mine/cost to maintain current value
