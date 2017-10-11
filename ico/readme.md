@@ -22,16 +22,7 @@ Automated ICO tracking system for generating credit scores based on social media
 * time of day/day of week trends per ico, follow the sun/national/timezone etc
 
 
-**Add**
-http://www.fsa.go.jp/menkyo/menkyoj/kasoutuka.pdf
-Money Partners
-QUOINE
-bitFlyer
-bitbank
-SBI virtual currencies
-GMO coin
-bittrade
-BTCBOX
-bitpoint japan
-FISCO
-Tech Bureau
+**Polling**
+* 15 minute all exchanges
+* 30 minute check/add new symbols to filter
+* 6-24 hours collect top accounts and obtain histories - in progress
