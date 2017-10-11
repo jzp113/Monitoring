@@ -22,7 +22,7 @@ Automated ICO tracking system for generating credit scores based on social media
 * time of day/day of week trends per ico, follow the sun/national/timezone etc
 
 
-**Polling**
-* 5 minute all exchanges
-* 10 minute check/add new symbols to filter
+**Schedule**
+* 5 minute poll all exchanges
+* 10 minute check for new and add symbols to twitter filter
 * 6-24 hours collect top accounts and obtain histories - in progress
