@@ -1,4 +1,4 @@
-Automated tracking system for generating credit scores for ICO's using social media and exchange acitivity.
+Automated tracking system for generating credit scores for ICOs using social media and exchange acitivity.
 
 **TODO**
 
