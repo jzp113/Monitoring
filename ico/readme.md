@@ -2,10 +2,9 @@ Automated ICO tracking system for generating credit scores based on social media
 
 **TODO**
 
-* auto add new symbols to twitter filter on discovery.
+* steps for discover vs track 
 * auto remove stock tickers/accounts based on brief history.
 * efficient strategy for building team histories. has to be repeatable/automateable and open for review.
-* need some kind of activity status check/alert for all new adds, which ones haven't gone active yet.
 
 **Reporting**
 
