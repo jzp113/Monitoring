@@ -2,9 +2,10 @@ Automated ICO tracking system for generating credit scores based on social media
 
 **TODO**
 
+* efficient strategy for building team histories. has to be repeatable/automateable and open for review.
 * steps for discover vs track 
 * auto remove stock tickers/accounts based on brief history.
-* efficient strategy for building team histories. has to be repeatable/automateable and open for review.
+
 
 **Reporting**
 
