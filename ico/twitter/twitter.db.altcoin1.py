@@ -12,9 +12,9 @@ conn = MySQLdb.connect("localhost","test","test","twitter",charset="utf8mb4",ini
 c = conn.cursor()
 
 # Auth
-consumer_key            = " "
+consumer_key            =  " "
 consumer_secret         = " "
-access_token           = " - "
+access_token            = " - "
 access_token_secret     = " "
 
 class StdOutListener(StreamListener):
@@ -50,7 +50,12 @@ class StdOutListener(StreamListener):
         in_reply_to_screen_name = json.loads(data)['in_reply_to_screen_name']
         in_reply_to_status_id = json.loads(data)['in_reply_to_status_id']
         in_reply_to_user_id = json.loads(data)['in_reply_to_user_id']
-        c.execute("INSERT INTO tweets (screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, verified, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",([screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, verified, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id]))
+        user_mentions = json.loads(data)['entities']['user_mentions']
+        if (len(user_mentions)) < 1:
+            user_mentions = 'na'
+        else:
+            user_mentions = str(json.loads(data)['entities']['user_mentions'])
+        c.execute("INSERT INTO tweets (screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, verified, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id,user_mentions) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",([screen_name,tweet_at,born,urls,symbols,description, username, text, followers, friends, source, location, tweet_id, statuses_count, time_zone, utc_offset, user_id, verified, in_reply_to_screen_name, in_reply_to_status_id, in_reply_to_user_id,user_mentions]))
         conn.commit()        
 
     def on_error(self, status):
@@ -62,4 +67,4 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
 
     stream = Stream(auth, l)
-    stream.filter(track=['basketball', '$hkg ', '$proxy token ', '$mix ', '$dgb ', '$alis ', '$ea ', '$tft ', '$btn ', '$cash poker pro ', '$elm ', '$eripple ', '$etbs ', '$mgo ', '$rlc ', '$dc ', '$cb ', '$tb ', '$ind ', '$cg ', '$itt ', '$kss ', '$cc ', '$umc ', '$adt ', '$orme ', '$slipst ', '$quiztum ', '$onek ', '$eltc ', '$hlm ', '$rup ', '$u ', '$ethb ', '$sht ', '$frd ', '$etherbtc ', '$pme ', '$benja ', '$sggcoin ', '$vib ', '$nmr ', '$dgd ', '$tgt ', '$hpc ', '$ebitcoincash ', '$ldm ', '$kick ', '$ge ', '$bco ', '$mln ', '$sta ', '$wancoi ', '$gno ', '$eren yilmaz ', '$lun ', '$krosscoin ', '$hgt ', '$bananacoin extended ', '$erippl ', '$pt ', '$odn ', '$jet ', '$net ', '$ndc ', '$silent notary token ', '$graphgrailai token ', '$fnl ', '$rent token ', '$natcoin ', '$gup ', '$gb ', '$cs ', '$network ', '$lc ', '$evr ', '$iwt ', '$lotter ', '$ebtc ', '$zsc ', '$smt ', '$gcc24 ', '$riya ', '$hsr ', '$ntc ', '$fuckol ', '$cd ', '$pts ', '$rent ', '$ctcold ', '$wancoin ', '$san ', '$f2utoken ', '$graphgrail ai ', '$dcnt ', '$mkr ', '$in ', '$fuckold ', '$cld ', '$bmchain token ', '$32c7 ', '$px ', '$1life ', '$cdx ', '$roc ', '$qau ', '$ktn ', '$vsmold ', '$rgc ', '$r ', '$namo ', '$e4row ', '$nxc ', '$hmq ', '$xai ', '$edoge ', '$bop ', '$rep ', '$real ', '$gt ', '$exn ', '$inxt ', '$bnt ', '$swp ', '$goku ', '$dragon exchange ', '$salt ', '$vsl ', '$rub ', '$r token ', '$geluk ', '$oax ', '$unify ', '$det ', '$swt ', '$cnx ', '$bmt ', '$rspr ', '$fam ', '$whl ', '$ebcsh ', '$av ', '$trx ', '$rlx ', '$funold ', '$piex ', '$vibe ', '$nxx ', '$rare ', '$dtc ', '$thongdee ', '$pow ', '$king ', '$ebitco ', '$cct ', '$gd2 ', '$zec ', '$art ', '$play ', '$al ', '$lottereum ', '$rpl ', '$bis '])
+    stream.filter(track=[listofsymbolshere], async=True)
