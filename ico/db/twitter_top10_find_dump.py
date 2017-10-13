@@ -25,16 +25,16 @@ auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 
 # get new in the past 10 min
-get_top_rt = """select count(*) as cnt, text from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 10 minute)) group by text order by cnt desc limit 1;"""
+get_top_rt = """select count(*) as cnt, text from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour)) group by text order by cnt desc limit 3;"""
 cursor.execute(get_top_rt)
 top_rt = cursor.fetchall()
 top_list = []
 for rt in top_rt:
     team = "@" + (str(rt).split(':')[0].split('@')[1])
     top_list.append(team) 
-    print(team)
-print(top_list)
-
+#    print(team)
+#print(top_list)
+#top_list = ['VeztInc']
 for screen_name in top_list:
     alltweets = []	
     user_data = api.get_user(screen_name)
@@ -57,14 +57,26 @@ for screen_name in top_list:
     db.commit()
     
     # get newest 3 tweets from ico team
-    print('commit')
+    #print('commit')
     name = "%" + screen_name.replace("@","") + "%"
-    get_first_tweets = "select tweet_id from twitter.tweets where screen_name like '" + name + "' order by tweet_at desc limit 3;"
-    print(get_first_tweets)
-    cursor.execute(get_first_tweets)
-    first_tweets = cursor.fetchall() 
+    get_first_tweets = "select tweet_id from twitter.tweets where screen_name like '" + name + "'  order by tweet_at desc limit 3;"
     
-    # get the retweeters id's (if low rt count here sample a few from early/mid/recent.
-    for item in first_tweets:
-        print(item)
+    print('----------------------------------')
+    print(screen_name)
+    cursor.execute(get_first_tweets)
+    first_retweets = cursor.fetchall() 
+    first_tweets_list = []
+    for fp in first_retweets:
+        first_tweets_list.append(str(fp).replace(",","").replace("(","").replace(")",""))
+    
+    # get retweeter id's (if low rt count here sample a few from early/mid/recent.
+    print(first_tweets_list)
+    retweeters_list = []
+    for status in first_tweets_list:
+        retweeter_ids = api.retweeters(status)
+        if len(retweeter_ids) > 0:
+            retweeters_list = api.lookup_users(user_ids=retweeter_ids)
+            for retweeter in retweeters_list:
+                print(retweeter.screen_name)
+
 db.close()
