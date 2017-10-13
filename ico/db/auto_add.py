@@ -12,7 +12,7 @@ cursor = db.cursor()
 # get new in the past 30 min
 get_newest_sql = """SELECT distinct lower(symbol) FROM ico.coins where (
 symbol not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and 
-symbol not like 'eth' and symbol not like '0x%' and new = 1 and (discovered > date_sub(utc_timestamp(), interval 30 minute)));"""
+symbol not like 'eth' and symbol not like '0x%' and new = 1 and (discovered > date_sub(utc_timestamp(), interval 10 minute)));"""
 cursor.execute(get_newest_sql)
 newest = cursor.fetchall()
 
