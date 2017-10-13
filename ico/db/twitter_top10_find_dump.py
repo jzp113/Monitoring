@@ -6,16 +6,18 @@ import os
 import fileinput
 import tweepy 
 import csv	
+import datetime
+import time
 
 # db
 db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
 #Twitter API credentials
-consumer_key            = " "
-consumer_secret         = " "
-access_key            = " - "
-access_secret     = " "
+consumer_key            = ""
+consumer_secret         = ""
+access_key            = ""
+access_secret     = ""
 
 
 #grab up to 3248 tweets per account
@@ -25,7 +27,7 @@ auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 
 # get new in the past 10 min
-get_top_rt = """select count(*) as cnt, text from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour)) group by text order by cnt desc limit 3;"""
+get_top_rt = """select count(*) as cnt, text from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 5 minute)) group by text order by cnt desc limit 3;"""
 cursor.execute(get_top_rt)
 top_rt = cursor.fetchall()
 top_list = []
@@ -38,6 +40,7 @@ for rt in top_rt:
 for screen_name in top_list:
     alltweets = []	
     user_data = api.get_user(screen_name)
+    time.sleep(15)
     new_tweets = api.user_timeline(screen_name = screen_name,count=200)
     alltweets.extend(new_tweets)
     oldest = alltweets[-1].id - 1
@@ -46,6 +49,7 @@ for screen_name in top_list:
     while len(new_tweets) > 0:
         print("getting tweets before %s" % (oldest))
         new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
+        time.sleep(15)
         alltweets.extend(new_tweets)
         oldest = alltweets[-1].id - 1
         print("...%s tweets downloaded so far" % (len(alltweets)))
@@ -69,14 +73,36 @@ for screen_name in top_list:
     for fp in first_retweets:
         first_tweets_list.append(str(fp).replace(",","").replace("(","").replace(")",""))
     
-    # get retweeter id's (if low rt count here sample a few from early/mid/recent.
     print(first_tweets_list)
-    retweeters_list = []
-    for status in first_tweets_list:
-        retweeter_ids = api.retweeters(status)
+
+    for first_tweet in first_tweets_list:
+        target_user_data = api.get_user(screen_name)
+        retweeter_ids = api.retweeters(first_tweet)
+        time.sleep(5)
+        print(retweeter_ids)       
         if len(retweeter_ids) > 0:
             retweeters_list = api.lookup_users(user_ids=retweeter_ids)
+            
             for retweeter in retweeters_list:
+                target_alltweets = []	
+                print("retweeter is ")
                 print(retweeter.screen_name)
+                target_user_data = api.get_user(retweeter.screen_name)
+                target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200)
+                time.sleep(5)
+                target_alltweets.extend(target_new_tweets)
+                target_oldest = target_alltweets[-1].id - 1
+            
+                while len(target_new_tweets) > 0:
+                    print("getting tweets before %s" % (target_oldest))
+                    target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200,max_id=target_oldest)
+                    time.sleep(5)
+                    target_alltweets.extend(target_new_tweets)
+                    target_oldest = target_alltweets[-1].id - 1
+                    print("...%s tweets downloaded so far" % (len(target_alltweets)))
+            
+                    for target_tweet in target_alltweets:  
+                        cursor.execute("INSERT IGNORE INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, target_user_data.created_at, str(target_tweet.entities['urls']).encode("utf-8","ignore"),str(target_tweet.entities['symbols']).encode("utf-8","ignore"), str(target_user_data.description).encode("utf-8","ignore"),target_tweet.text.encode("utf-8"), target_user_data.followers_count, target_user_data.friends_count, target_tweet.source,target_user_data.location, str(target_user_data.statuses_count), target_user_data.time_zone, target_user_data.utc_offset, target_user_data.id, target_user_data.verified))
 
+                    db.commit()
 db.close()
