@@ -24,4 +24,5 @@ verified bool,
 in_reply_to_screen_name varchar(512),
 in_reply_to_status_id bigint(20),
 in_reply_to_user_id bigint(20),
-user_mentions varchar(1024));
+user_mentions varchar(1024),
+logged datetime);
