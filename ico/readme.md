@@ -2,8 +2,7 @@ Automated tracking system for generating credit scores for ICOs using social med
 
 **TODO**
 
-* efficient strategy for building team histories. has to be repeatable/automateable and open for review.
-* steps for discover vs track 
+* nightly/weekly auto search/resolve/download all new symbols/screen_names to fill in gaps. 
 * auto remove stock tickers/accounts based on brief history.
 
 
