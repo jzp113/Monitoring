@@ -54,7 +54,8 @@ for screen_name in top_list:
         print("...%s tweets downloaded so far" % (len(alltweets)))
 
         for tweet in alltweets:
-            cursor.execute("REPLACE INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,in_reply_to_screen_name,in_reply_to_status_id,in_reply_to_user_id,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(tweet.id,str(tweet.user.screen_name), tweet.created_at, user_data.created_at, str(tweet.entities['urls']).encode("ascii","ignore"),str(tweet.entities['symbols']).encode("ascii","ignore"), str(user_data.description).encode("ascii","ignore"),tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, tweet.in_reply_to_screen_name, tweet.in_reply_to_status_id, tweet.in_reply_to_user_id, datetime.datetime.now()))
+            print('start')
+            cursor.execute("REPLACE INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(tweet.id,str(tweet.user.screen_name), tweet.created_at, user_data.created_at, str(tweet.entities['urls']).encode("utf8","ignore"),str(tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
             
             #cursor.execute("select screen_name from twitter.tweets limit 10;")
         db.commit()
@@ -95,9 +96,9 @@ for screen_name in top_list:
                     target_alltweets.extend(target_new_tweets)
                     target_oldest = target_alltweets[-1].id - 1
                     print("...%s tweets downloaded so far" % (len(target_alltweets)))
-                    print("secondary")
+                    print(retweeter.screen_name)
                     for target_tweet in target_alltweets:  
-                        cursor.execute("REPLACE INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,in_reply_to_screen_name,in_reply_to_status_id,in_reply_to_user_id,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, user_data.created_at, str(target_tweet.entities['urls']).encode("ascii","ignore"),str(target_tweet.entities['symbols']).encode("ascii","ignore"), str(user_data.description).encode("ascii","ignore"),target_tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,target_tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, target_tweet.in_reply_to_screen_name, target_tweet.in_reply_to_status_id, target_tweet.in_reply_to_user_id, datetime.datetime.now()))
+                        cursor.execute("REPLACE INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, user_data.created_at, str(target_tweet.entities['urls']).encode("utf8","ignore"),str(target_tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),target_tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,target_tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
 
                     db.commit()
 db.close()
