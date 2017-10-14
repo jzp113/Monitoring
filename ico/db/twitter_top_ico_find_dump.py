@@ -14,10 +14,10 @@ db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
 #Twitter API credentials
-consumer_key            = ""
-consumer_secret         = ""
-access_key            = ""
-access_secret     = ""
+consumer_key            = " "
+consumer_secret         = " "
+access_key            = " - "
+access_secret     = " "
 
 
 #grab up to 3248 tweets per account
@@ -98,7 +98,7 @@ for screen_name in top_list:
                     print("...%s tweets downloaded so far" % (len(target_alltweets)))
                     print(retweeter.screen_name)
                     for target_tweet in target_alltweets: 
-                        # insert ignore to avoid deadlock with parent tweets - won't get new status counts/values from members but they aren't nec
+                        # insert ignore to avoid deadlock with stream dumper
                         cursor.execute("insert ignore INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, user_data.created_at, str(target_tweet.entities['urls']).encode("utf8","ignore"),str(target_tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),target_tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,target_tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
                     db.commit()
 db.close()
