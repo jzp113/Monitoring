@@ -14,10 +14,10 @@ db = pymysql.connect("localhost","test","test","ico")
 cursor = db.cursor()
 
 #Twitter API credentials
-consumer_key            = " "
-consumer_secret         = " "
-access_key            = " - "
-access_secret     = " "
+consumer_key            = ""
+consumer_secret         = ""
+access_key            = ""
+access_secret     = ""
 
 
 #grab up to 3248 tweets per account
@@ -39,7 +39,7 @@ for row in top_rt:
 top_list = sorted(set(top_teams))
 
 # Log up ~3200 tweets per screen_name
-#top_list = ['spwhaleclub']
+#top_list = ['xxx']
 for screen_name in top_list:
     alltweets = []	
     user_data = api.get_user(screen_name)
@@ -56,10 +56,12 @@ for screen_name in top_list:
         oldest = alltweets[-1].id - 1
         print("...%s tweets downloaded so far" % (len(alltweets)))
         for tweet in alltweets:
-            cursor.execute("replace INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(tweet.id,str(tweet.user.screen_name), tweet.created_at, user_data.created_at, str(tweet.entities['urls']).encode("utf8","ignore"),str(tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
+            print(tweet)
+            # insert ignore to get new  ico account statuses as available
+            cursor.execute("replace INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(tweet.id,str(tweet.user.screen_name).encode("utf8","ignore"), tweet.created_at, user_data.created_at, str(tweet.entities['urls']).encode("utf8","ignore"),str(tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
         db.commit()
     
-    # get newest 3 tweet_id from ico team
+    # get newest 3 tweet_id from ico team can be higher, n * 100 followers * 3200 tweets each will be logged 
     name = "%" + screen_name.replace("@","") + "%"
     get_first_tweets = "select tweet_id from twitter.tweets where screen_name like '" + name + "'  order by tweet_at desc limit 3;"
     print(name)
@@ -76,7 +78,7 @@ for screen_name in top_list:
         time.sleep(3)
         if len(retweeter_ids) > 0:
             retweeters_list = api.lookup_users(user_ids=retweeter_ids)
-            
+            #retweeters_list = ['xxx']
             # log up to 3200 of each of the 100 retweeters tweets
             for retweeter in retweeters_list:
                 target_alltweets = []	
@@ -95,7 +97,8 @@ for screen_name in top_list:
                     target_oldest = target_alltweets[-1].id - 1
                     print("...%s tweets downloaded so far" % (len(target_alltweets)))
                     print(retweeter.screen_name)
-                    for target_tweet in target_alltweets:  
-                        cursor.execute("replace INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, user_data.created_at, str(target_tweet.entities['urls']).encode("utf8","ignore"),str(target_tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),target_tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,target_tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
+                    for target_tweet in target_alltweets: 
+                        # insert ignore to avoid deadlock with parent tweets - won't get new status counts/values from members but they aren't nec
+                        cursor.execute("insert ignore INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, user_data.created_at, str(target_tweet.entities['urls']).encode("utf8","ignore"),str(target_tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),target_tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,target_tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
                     db.commit()
 db.close()
