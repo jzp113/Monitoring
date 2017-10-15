@@ -1,5 +1,5 @@
 Automated tracking system for generating credit scores for ICO teams based on social media and exchange acitivity.
-Currently tracking 3000+ listings across 14 exchanges with 250+ active twitter filters.
+Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter filters.
 
 **TODO**
 
