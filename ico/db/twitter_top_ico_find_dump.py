@@ -31,6 +31,7 @@ get_top_rt = """select count(*) as cnt, lower(substring_index(text,':',1)) from 
 cursor.execute(get_top_rt)
 top_rt = cursor.fetchall()
 
+
 # Make list of top 10-20 unique screen_names
 top_teams = []
 for row in top_rt:
@@ -40,7 +41,9 @@ top_list = sorted(set(top_teams))
 
 # Log up ~3200 tweets per screen_name
 #top_list = ['xxx']
+top_list = ['dashpay', 'ethereumproject', 'Ripple', 'BITCOINCASH', 'litecoin', 'NEMofficial', 'monerocurrency', 'bitconnect', 'NeosCoin', 'IoTa2016', 'EthereumClassic', 'eth_classic']
 for screen_name in top_list:
+    print(screen_name)
     alltweets = []	
     user_data = api.get_user(screen_name)
     time.sleep(3)
@@ -49,12 +52,12 @@ for screen_name in top_list:
     oldest = alltweets[-1].id - 1
 
     while len(new_tweets) > 0:
-        #print("getting tweets before %s" % (oldest))
+        print("getting tweets before %s" % (oldest))
         new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
         time.sleep(3)
         alltweets.extend(new_tweets)
         oldest = alltweets[-1].id - 1
-        #print("...%s tweets downloaded so far" % (len(alltweets)))
+        print("...%s tweets downloaded so far" % (len(alltweets)))
         for tweet in alltweets:
             #print(tweet)
             # insert ignore to get new  ico account statuses as available
@@ -64,7 +67,7 @@ for screen_name in top_list:
     # get newest 3 tweet_id from ico team can be higher, n * 100 retweeters * 3200 tweets each will be logged 
     name = "%" + screen_name.replace("@","") + "%"
     get_first_tweets = "select tweet_id from twitter.tweets where screen_name like '" + name + "'  order by tweet_at desc limit 3;"
-    #print(name)
+    print(name)
     cursor.execute(get_first_tweets)
     first_retweets = cursor.fetchall() 
     first_tweets_list = []
@@ -82,20 +85,20 @@ for screen_name in top_list:
             # log up to 3200 of each of the 100 retweeters tweets
             for retweeter in retweeters_list:
                 target_alltweets = []	
-                print("retweeter is: " + retweeter)
-                target_user_data = api.get_user(retweeter)
-                target_new_tweets = api.user_timeline(screen_name = retweeter,count=200)
+                print("retweeter is: " + retweeter.screen_name)
+                target_user_data = api.get_user(retweeter.screen_name)
+                target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200)
                 time.sleep(3)
                 target_alltweets.extend(target_new_tweets)
                 target_oldest = target_alltweets[-1].id - 1
             
                 while len(target_new_tweets) > 0:
-                    #print("getting tweets before %s" % (target_oldest))
-                    target_new_tweets = api.user_timeline(screen_name = retweeter,count=200,max_id=target_oldest)
+                    print("getting tweets before %s" % (target_oldest))
+                    target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200,max_id=target_oldest)
                     time.sleep(3)
                     target_alltweets.extend(target_new_tweets)
                     target_oldest = target_alltweets[-1].id - 1
-                    #print("...%s tweets downloaded so far" % (len(target_alltweets)))
+                    print("...%s tweets downloaded so far" % (len(target_alltweets)))
                     for target_tweet in target_alltweets: 
                         # insert ignore to avoid deadlock with stream dumper
                         cursor.execute("insert ignore INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(target_tweet.id,str(target_tweet.user.screen_name), target_tweet.created_at, user_data.created_at, str(target_tweet.entities['urls']).encode("utf8","ignore"),str(target_tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),target_tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,target_tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
