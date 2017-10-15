@@ -10,7 +10,7 @@ import datetime
 import time
 
 # db
-db = pymysql.connect("localhost","test","test","ico")
+db = pymysql.connect("localhost","test","test","ico",charset="utf8mb4",init_command='SET NAMES utf8mb4')
 cursor = db.cursor()
 
 #Twitter API credentials
@@ -38,7 +38,7 @@ for row in top_rt:
     top_teams.append(team)
 top_list = sorted(set(top_teams))
 
-# Log up to 3200 tweets per screen_name
+# Log up ~3200 tweets per screen_name
 #top_list = ['xxx']
 for screen_name in top_list:
     alltweets = []	
