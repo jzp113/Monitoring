@@ -3,7 +3,8 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 **TODO**
 
-* nightly/weekly auto search/resolve/download all new symbols/screen_names to fill in gaps. 
+* inventory of active icos 
+* nightly/weekly poll twitter for new symbols/screen_names to maintain histories/status list. 
 * auto remove stock tickers/accounts based on brief history.
 
 
