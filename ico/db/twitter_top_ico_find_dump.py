@@ -41,14 +41,16 @@ top_list = sorted(set(top_teams))
 
 # Log up ~3200 tweets per screen_name
 #top_list = ['xxx']
-top_list = ['dashpay', 'ethereumproject', 'Ripple', 'BITCOINCASH', 'litecoin', 'NEMofficial', 'monerocurrency', 'bitconnect', 'NeosCoin', 'IoTa2016', 'EthereumClassic', 'eth_classic']
+top_list = ['eth_classic']
 for screen_name in top_list:
     print(screen_name)
     alltweets = []	
     user_data = api.get_user(screen_name)
+    print(user_data)
     time.sleep(3)
     new_tweets = api.user_timeline(screen_name = screen_name,count=200)
     alltweets.extend(new_tweets)
+    print(new_tweets)
     oldest = alltweets[-1].id - 1
 
     while len(new_tweets) > 0:
@@ -60,7 +62,7 @@ for screen_name in top_list:
         print("...%s tweets downloaded so far" % (len(alltweets)))
         for tweet in alltweets:
             #print(tweet)
-            # insert ignore to get new  ico account statuses as available
+            # replace into to get new  ico account statuses as available
             cursor.execute("replace INTO twitter.tweets (tweet_id, screen_name, tweet_at, born, urls,symbols,description,text,followers,friends,source, location,statuses_count, time_zone, utc_offset, user_id, verified,logged) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(tweet.id,str(tweet.user.screen_name).encode("utf8","ignore"), tweet.created_at, user_data.created_at, str(tweet.entities['urls']).encode("utf8","ignore"),str(tweet.entities['symbols']).encode("utf8","ignore"), str(user_data.description).encode("utf8","ignore"),tweet.text.encode("utf-8"), user_data.followers_count, user_data.friends_count,tweet.source,user_data.location, str(user_data.statuses_count), user_data.time_zone, user_data.utc_offset, user_data.id, user_data.verified, datetime.datetime.now()))
         db.commit()
     
