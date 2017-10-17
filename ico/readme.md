@@ -14,6 +14,7 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 * bot score/elimination
 * score exchanges by listing fees
 * percent current ico to total past symbols and total tweets
+* volume breakdown for all current icos for screen_name/team 
 * chart of symbol count over time for screen_name and team for previous ico's compared with current.
 * percent/summary of non-ico tweets from screen_name/team
 * simple pie chart for each current ico displaying affiliations as percentage along with past performance of those projects.
