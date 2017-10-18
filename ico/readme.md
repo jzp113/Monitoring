@@ -3,7 +3,10 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 **TODO**
 
+* unique:dups per all accounts
+* length of current trend by count per retweeter - how long?
 * automatic bot check - time/text
+* at least make list of  unique ids before scan to not be hitting the same ones over and over.
 * add active=y/n to ico.coins
 * check twitter for statuses before adding new symbols to filter
 * regular check all symbols and flag new ones going active
