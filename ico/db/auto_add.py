@@ -12,7 +12,7 @@ cursor = db.cursor()
 # get new in the past 30 min
 get_newest_sql = """SELECT distinct lower(symbol) FROM ico.coins where (
 symbol not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and 
-symbol not like 'eth' and symbol not like '0x%' and new = 1 and (discovered > date_sub(utc_timestamp(), interval 10 minute)));"""
+symbol not like 'eth' and symbol not like '0x%' and new = 1 and active = 1 and (discovered > date_sub(utc_timestamp(), interval 10 minute)));"""
 cursor.execute(get_newest_sql)
 newest = cursor.fetchall()
 
@@ -28,6 +28,7 @@ if len(newest) > 0:
         add_list.extend(symbol)
     print(len(add_list))
     
+    # if add list == 0 and active = 1:
     if add_list == 0:
         pass
     # Format for twitter stream track parameter as an array.
