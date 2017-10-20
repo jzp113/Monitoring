@@ -27,7 +27,7 @@ auth.set_access_token(access_key, access_secret)
 api = tweepy.API(auth)
 
 # get top ico accounts based on 24 hr retweet counts
-get_top_rt = """select count(*) as cnt, lower(substring_index(text,':',1)) from twitter.tweets where text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 1 hour)) group by text order by cnt desc limit 5;"""
+get_top_rt = """select count(*) as cnt, lower(substring_index(text,':',1)) from twitter.tweets where (text not like '%heliumpay%' and text not like '%centra_card%' and text not like '%voisecom%' and text not like '%stocktwit%') and text like 'rt %' and (tweet_at > date_sub(utc_timestamp(), interval 24 hour)) group by text order by cnt desc limit 25;"""
 cursor.execute(get_top_rt)
 top_rt = cursor.fetchall()
 
@@ -40,17 +40,18 @@ for row in top_rt:
 top_list = sorted(set(top_teams))
 
 # Log up ~3200 tweets per screen_name
-#top_list = ['xxx']
-top_list = ['eth_classic']
+#top_list = ['ViulyOfficial']
+#top_list = ['dashpay', 'ethereumproject', 'Ripple', 'litecoin', 'NEMofficial', 'monerocurrency', 'bitconnect', 'NeosCoin', 'IoTa2016', 'EthereumClassic', 'eth_classic', 'BITCOlNCASH', 'vitalikbuterin']
 for screen_name in top_list:
+    print("xxxxxxxxxxxxxxxx")
     print(screen_name)
+    print("xxxxxxxxxxxxxxxx")
     alltweets = []	
     user_data = api.get_user(screen_name)
-    print(user_data)
     time.sleep(3)
     new_tweets = api.user_timeline(screen_name = screen_name,count=200)
     alltweets.extend(new_tweets)
-    print(new_tweets)
+    #print(new_tweets)
     oldest = alltweets[-1].id - 1
 
     while len(new_tweets) > 0:
@@ -68,10 +69,13 @@ for screen_name in top_list:
     
     # get newest 3 tweet_id from ico team can be higher, n * 100 retweeters * 3200 tweets each will be logged 
     name = "%" + screen_name.replace("@","") + "%"
-    get_first_tweets = "select tweet_id from twitter.tweets where screen_name like '" + name + "'  order by tweet_at desc limit 3;"
+    get_first_tweets = "select tweet_id from twitter.tweets where lower(text) not like 'rt @%' and screen_name like '" + name + "'  order by tweet_id desc limit 5;"
     print(name)
     cursor.execute(get_first_tweets)
     first_retweets = cursor.fetchall() 
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")    
+    print(first_retweets)
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")    
     first_tweets_list = []
     for fp in first_retweets:
         first_tweets_list.append(str(fp).replace(",","").replace("(","").replace(")",""))
@@ -95,9 +99,11 @@ for screen_name in top_list:
                 target_oldest = target_alltweets[-1].id - 1
             
                 while len(target_new_tweets) > 0:
+                    print("retweeter is: " + retweeter.screen_name)
                     print("getting tweets before %s" % (target_oldest))
                     target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200,max_id=target_oldest)
                     time.sleep(3)
+                    print("retweeter is: " + retweeter.screen_name)
                     target_alltweets.extend(target_new_tweets)
                     target_oldest = target_alltweets[-1].id - 1
                     print("...%s tweets downloaded so far" % (len(target_alltweets)))

@@ -3,7 +3,6 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 **TODO**
 
-* print parent and target usernames with output
 * unique:dups per all accounts
 * length of current trend by count per retweeter - how long?
 * automatic bot check - time/text
