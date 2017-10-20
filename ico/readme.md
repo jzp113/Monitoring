@@ -3,7 +3,7 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 **TODO**
 
-* unique:dups per team, get rid of almost all bots right here.
+* unique:dups per team, get rid of almost all bots right there.
 * make list of unique ids before scan to not be hitting the same ones over and over.
 
 **Reporting/Workflow**
