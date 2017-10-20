@@ -90,7 +90,10 @@ for screen_name in top_list:
             #retweeters_list = ['xxx']
             # log up to 3200 of each of the 100 retweeters tweets
             for retweeter in retweeters_list:
-                target_alltweets = []	
+                target_alltweets = []
+                print("xxxxxxxxxxxxxxxx")
+                print(screen_name)
+                print("xxxxxxxxxxxxxxxx")                
                 print("retweeter is: " + retweeter.screen_name)
                 target_user_data = api.get_user(retweeter.screen_name)
                 target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200)
@@ -99,6 +102,9 @@ for screen_name in top_list:
                 target_oldest = target_alltweets[-1].id - 1
             
                 while len(target_new_tweets) > 0:
+                    print("xxxxxxxxxxxxxxxx")
+                    print(screen_name)
+                    print("xxxxxxxxxxxxxxxx")                    
                     print("retweeter is: " + retweeter.screen_name)
                     print("getting tweets before %s" % (target_oldest))
                     target_new_tweets = api.user_timeline(screen_name = retweeter.screen_name,count=200,max_id=target_oldest)
