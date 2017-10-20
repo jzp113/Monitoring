@@ -3,10 +3,8 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 **TODO**
 
-* unique:dups per all accounts
-* length of current trend by count per retweeter/how long
-* automatic bot check - time/text
-* make list of  unique ids before scan to not be hitting the same ones over and over.
+* unique:dups per team, get rid of almost all bots right here.
+* make list of unique ids before scan to not be hitting the same ones over and over.
 
 **Reporting/Workflow**
 
