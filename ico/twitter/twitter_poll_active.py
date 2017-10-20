@@ -21,7 +21,7 @@ cursor = db.cursor()
 # only new - no btc/eth/$$$$ - don't want them in the filters
 select_sql = """SELECT trim(upper(symbol)) FROM ico.coins where (
 symbol not like '300' and symbol  not like '$$$' and symbol not like 'btc' and symbol not like 'ltc' and 
-symbol not like 'eth' and symbol not like '0x%' and new = 1);"""
+symbol not like 'eth' and symbol not like '0x%' and new = 1 and active = 0);"""
 cursor.execute(select_sql)
 results = cursor.fetchall()
 
