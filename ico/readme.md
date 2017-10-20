@@ -24,4 +24,4 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 * 5 minute poll all exchanges
 * 10 minute check for new and add symbols to twitter filter
-* 4 am nightly poll for twitter activity on new icos
+* 2 am nightly poll for twitter activity on new icos
