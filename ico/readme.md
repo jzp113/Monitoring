@@ -1,5 +1,5 @@
 Automated tracking system for scoring ICO teams based on social media and exchange activity.
-Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter filters. Analyzing over 3 million tweets daily.
+Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter filters. Analyzing over 3.2 million tweets daily.
 
 **TODO**
 
