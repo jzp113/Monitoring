@@ -3,6 +3,7 @@ Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter f
 
 **TODO**
 
+* check for rate limit and auto adjust number of rt's based on total # or rt'rs per status = 100+. 
 * unique:dups per team and individuals, get rid of most bots right there.
 * make list of unique ids before scan to not be hitting the same ones over and over.
 * screen_names at the top of multiple groups both leads and rts
