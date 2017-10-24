@@ -3,7 +3,6 @@ Currently tracking 3000+ listings across 17 exchanges with 250+ active twitter f
 
 **TODO**
 
-https://shapeshift.io/getcoins
 * unique:dups per team and individuals, get rid of most bots right there.
 * make list of unique ids before scan to not be hitting the same ones over and over.
 * screen_names at the top of multiple groups both leads and rts
