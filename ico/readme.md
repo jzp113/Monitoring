@@ -1,5 +1,5 @@
-Automated tracking system for scoring ICO teams based on social media and exchange activity.
-Currently tracking 3000+ listings across 15 exchanges with 250+ active twitter filters. Analyzing over 3.2 million tweets daily.
+A://shapeshift.io/getcoinstomated tracking system for scoring ICO teams based on social media and exchange activity.
+Currently tracking 3000+ listings across 17 exchanges with 250+ active twitter filters. Analyzing over 3.3 million tweets daily.
 
 **TODO**
 
@@ -25,4 +25,4 @@ https://shapeshift.io/getcoins
 
 * 5 minute poll all exchanges
 * 10 minute check for new and add symbols to twitter filter
-* 2:00 UTC daily poll for twitter activity on new icos
+* 2:00 UTC daily poll for twitter activity on new ICOs
