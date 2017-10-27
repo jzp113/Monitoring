@@ -1,27 +1,12 @@
 Automated tracking system for scoring ICO teams based on social media and exchange activity.
-Currently tracking 3000+ listings across 17 exchanges with 200+ active twitter filters. Analyzing over 3.3 million tweets daily.
+Currently tracking 3000+ listings across 18 exchanges with 200+ active twitter filters.
 
 **TODO**
-* fast, lightweight, standalone profiler = minimal bot score and that's it. no db just live polls.
-* maybe twitter autorespond so people can tag screen_names and both get the report
-* 'account is/not member of a botnet w score of xxxx/yyyy:zzz whatever'
-* unique:dups per team and individuals, get rid of most bots right there.
-* pump groups/clubs listing 
-* make list of unique ids before scan to not be hitting the same ones over and over.
-* screen_names at the top of multiple groups both leads and rts
+* faster, standalone profiler.
 
 **Reporting/Workflow**
-
-* bot score/elimination
-* score exchanges by listing fees
-* percent current ico to total past symbols and total tweets
-* volume breakdown for all current icos for screen_name/team 
-* chart of symbol count over time for screen_name and team for previous ico's compared with current.
-* percent/summary of non-ico tweets from screen_name/team
-* simple pie chart for each current ico displaying affiliations as percentage along with past performance of those projects.
-* segments should be clickable for a individual scores/breakdowns/weightings as well as raw text samples with count to highlight spam, no names or timestamps/etc.
-* github activity
-
+* twitter autorespond so people can tag screen_names and both get the report
+* 'account is/not member of a botnet w score of scheduled:autorespond:unique'
 
 **Schedule**
 
