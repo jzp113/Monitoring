@@ -4,6 +4,7 @@ Currently tracking 3000+ listings across 17 exchanges with 200+ active twitter f
 **TODO**
 * fast, lightweight, standalone profiler = minimal bot score and that's it. no db just live polls.
 * maybe twitter autorespond so people can tag screen_names and both get the report
+* 'account is/not member of a botnet w score of xxxx/yyyy:zzz whatever'
 * unique:dups per team and individuals, get rid of most bots right there.
 * pump groups/clubs listing 
 * make list of unique ids before scan to not be hitting the same ones over and over.
