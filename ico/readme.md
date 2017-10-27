@@ -8,7 +8,6 @@ Currently tracking 3000+ listings across 17 exchanges with 200+ active twitter f
 * pump groups/clubs listing 
 * make list of unique ids before scan to not be hitting the same ones over and over.
 * screen_names at the top of multiple groups both leads and rts
-* https://upbit.com
 
 **Reporting/Workflow**
 
