@@ -2,6 +2,7 @@ Automated tracking system for scoring ICO teams based on social media and exchan
 Currently tracking 3000+ listings across 17 exchanges with 200+ active twitter filters. Analyzing over 3.3 million tweets daily.
 
 **TODO**
+* minimum standalone profiler
 * unique:dups per team and individuals, get rid of most bots right there.
 * pump groups/clubs listing 
 * make list of unique ids before scan to not be hitting the same ones over and over.
