@@ -2,11 +2,12 @@ Automated tracking system for scoring ICO teams based on social media and exchan
 Currently tracking 3000+ listings across 18 exchanges with 200+ active twitter filters.
 
 **TODO**
-* faster, standalone profiler.
+* standalone profiler.
 
 **Reporting/Workflow**
 * twitter autorespond so people can tag screen_names and both get the report
 * 'account is/not member of a botnet w score of scheduled:autorespond:unique'
+* 'top 5 affiliates by volume'
 
 **Schedule**
 
