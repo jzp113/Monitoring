@@ -1,12 +1,14 @@
-Automated tracking system for scoring ICO teams based on social media and exchange activity.
-Currently tracking 3000+ listings across 18 exchanges with 200+ active twitter filters.
+Automated logging system for examining ICO teams based on social media and exchange activity.
+Currently tracking 3000+ listings across 18 exchanges with 200+ active twitter filters. For feedback or info on a specific ICO please message me on Twitter @JoshuaOpolko
 
 **TODO**
 * standalone profiler.
 
 **Reporting/Workflow**
-* twitter autorespond so people can tag screen_names and both get the report
-* 'top 3 partners/support by volume'
+* need a formalized report format for manual, needs to abstract no raw tweets
+* twitter autorespond so people can tag screen_names and both get brief report
+* brief:'top 3 supporters by volume'
+
 
 **Schedule**
 
