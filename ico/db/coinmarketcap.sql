@@ -1,5 +1,5 @@
-CREATE TABLE ico.ticker (
-id varchar(128) NOT NULL PRIMARY KEY,
+CREATE TABLE ico.tickers (
+id varchar(128),
 name varchar(128),
 symbol varchar(10),
 rank int,
