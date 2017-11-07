@@ -2,13 +2,9 @@ Automated logging system for rating ICO teams based on social media and exchange
 Currently tracking 3000+ listings across 18 exchanges with 200+ active twitter filters. For feedback or info on a specific ICO please message me on Twitter @JoshuaOpolko
 
 **TODO**
-* standalone profiler.
+* coinmarketcap 
 
 **Reporting/Workflow**
-* need a formalized report format for manual, needs to abstract no raw tweets
-* twitter autorespond so people can tag screen_names and both get brief report
-* brief:'top 3 supporters by volume'
-
 
 **Schedule**
 
