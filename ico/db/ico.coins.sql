@@ -6,6 +6,6 @@ active bool,
 field2 varchar(512),
 field3 varchar(512),
 field4 varchar(512),
-field5 varchar(512),
+created datetime,
 new bool,
 discovered datetime);
